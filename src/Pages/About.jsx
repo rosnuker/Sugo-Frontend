@@ -1,6 +1,6 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 
-export default function Home() {
+export default function About() {
   return (
     <>
       <div className='gradientbg_1'>
@@ -27,7 +27,7 @@ export default function Home() {
         </Grid>
       </div>
 
-      {console.log('Home')}        
+      {console.log('About')}        
     </>
   )
 }
