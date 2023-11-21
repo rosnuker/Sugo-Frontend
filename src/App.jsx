@@ -1,5 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
-
+import "./App.css"
 import RootLayout from "./Layouts/RootLayout"
 
 import Home from "./Pages/Home"
@@ -25,16 +25,16 @@ const router = createBrowserRouter([
         path: 'contact',
         element: <Contact />,
       },
-      {
-        path: 'login',
-        element: <Login />,
-      },
-      {
-        path: 'register',
-        element: <Register />,
-      },
     ],
   },
+  {
+      path: 'login',
+      element: <Login />,
+  },
+  {
+    path: 'register',
+    element: <Register />,
+},
 ])
 
 function App() {
