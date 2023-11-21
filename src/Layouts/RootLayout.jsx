@@ -4,15 +4,17 @@ import { NavLink, Outlet } from "react-router-dom";
 export default function RootLayout() {
   return (
     <>
-      <Grid>
-        <nav>
-          <Typography sx={{display: "inline"}}>SUGO</Typography>
-          <NavLink to='/'><Button sx={{marginLeft: 110}}>Home</Button></NavLink>
-          <NavLink to='about'><Button>About Us</Button></NavLink>
-          <NavLink to='contact'><Button>Contact Us</Button></NavLink>
-          <NavLink to='login'><Button>Login</Button></NavLink>
-          <NavLink to='register'><Button>Register</Button></NavLink>
-        </nav>
+      <Grid container justify='center' alignItems='center' direction='column'>
+        <Grid item>
+          <nav>
+            <Typography sx={{display: "inline"}}>SUGO</Typography>
+            <NavLink to='/'><Button sx={{marginLeft: 120}}>Home</Button></NavLink>
+            <NavLink to='about'><Button>About Us</Button></NavLink>
+            <NavLink to='contact'><Button>Contact Us</Button></NavLink>
+            <NavLink to='login'><Button variant='contained' sx={{marginLeft: 3}}>Login</Button></NavLink>
+            <NavLink to='register'><Button variant='outlined' sx={{marginLeft: 1}}>Register</Button></NavLink>
+          </nav>
+        </Grid>
       </Grid>
 
       <Outlet />
