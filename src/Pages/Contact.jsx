@@ -2,6 +2,11 @@
 
 export default function Contact() {
   return(
-    console.log('Contact')
+    <>
+      <div className='gradientbg_1'>
+        
+      </div>
+      {console.log('Contact')}
+    </>
   )
 }

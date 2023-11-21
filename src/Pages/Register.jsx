@@ -2,6 +2,11 @@
 
 export default function Register() {
   return(
-    console.log('Register')
+    <>
+      <div className='gradientbg_2'>
+        
+      </div>
+      {console.log('Register')}
+    </>
   )
 }

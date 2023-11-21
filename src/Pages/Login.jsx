@@ -2,6 +2,11 @@
 
 export default function Login() {
   return(
-    console.log('Login')
+    <>
+      <div className='gradientbg_2'>
+        
+      </div>
+      {console.log('Login')}
+    </>
   )
 }

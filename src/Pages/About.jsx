@@ -2,6 +2,11 @@
 
 export default function About() {
   return(
-    console.log('About')
+    <>
+      <div className='gradientbg_1'>
+
+      </div>
+      {console.log('About')}
+    </>
   )
 }
