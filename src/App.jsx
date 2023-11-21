@@ -1,4 +1,4 @@
-import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from "react-router-dom"
+import { RouterProvider, createBrowserRouter } from "react-router-dom"
 
 import RootLayout from "./Layouts/RootLayout"
 
@@ -8,17 +8,34 @@ import Contact from "./Pages/Contact"
 import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path='/' element={<RootLayout />}>
-      <Route index element={<Home />} />
-      <Route path='about' element={<About />} />
-      <Route path='contact' element={<Contact />} />
-      <Route path='login' element={<Login />} />
-      <Route path='register' element={<Register />} />
-    </Route>
-  )
-)
+const router = createBrowserRouter([
+  {
+    path:'/',
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: 'about',
+        element: <About />,
+      },
+      {
+        path: 'contact',
+        element: <Contact />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'register',
+        element: <Register />,
+      },
+    ],
+  },
+])
 
 function App() {
   return (
