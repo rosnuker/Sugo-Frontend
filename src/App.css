@@ -1,0 +1,15 @@
+body {
+  margin: 0px;
+}
+
+.gradientbg_1 {
+  width: 100vw;
+  height: 93.9vh;
+  background: linear-gradient(#333DAD, #00CCE5);
+}
+
+.gradientbg_2 {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(#333DAD, #00CCE5);
+}
