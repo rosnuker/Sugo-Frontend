@@ -3,11 +3,11 @@ import { Box, Grid, Typography } from "@mui/material";
 export default function About() {
   return (
     <div className='gradientbg_3'>
-      <Grid container justify='center' alignItems='center' direction='row' spacing={4}>
+      <Grid container justify='center' alignItems='center' direction='row' spacing={-4}>
         <Grid item xs={12} sm={6}>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
             <img src="computer_mob_programming.png" alt="SUGO Image" style={{ maxWidth: '450px', maxHeight: '450px', borderRadius: '5px', marginTop: 150, marginLeft: -250 }} />
-            <img src="aight.png" alt="OK" style={{ maxWidth: '450px', maxHeight: '450px', borderRadius: '5px', position: 'absolute', top: '600px', left: '1720px', zIndex:1 }} />
+            <img src="aight.png" alt="OK" style={{ maxWidth: '450px', maxHeight: '450px', borderRadius: '5px', position: 'absolute', top: '650px', left: '1720px', zIndex:1 }} />
           </Box>
         </Grid>
         
@@ -24,12 +24,12 @@ export default function About() {
         </Grid>
 
         {/* Profiles */}
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <Grid container spacing={4}>
             {/* Profile 1 */}
             <Grid item xs={12} sm={4}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
-                <img src="profile1.jpg" alt="Creator 1" style={{ maxWidth: '75%', borderRadius: '10px' }} />
+                <img src="profile1.png" alt="Creator 1" style={{ maxWidth: '75%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom>
                   Torqudeo, Adrian Carlo
                 </Typography>
@@ -40,9 +40,9 @@ export default function About() {
             </Grid>
 
             {/* Profile 2 */}
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
-                <img src="profile2.jpg" alt="Creator 2" style={{ maxWidth: '75%', borderRadius: '10px' }} />
+                <img src="profile2.png" alt="Creator 2" style={{ maxWidth: '75%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom> 
                   Arisgar, Aldrich Alex
                 </Typography>
@@ -53,9 +53,9 @@ export default function About() {
             </Grid>
 
             {/* Profile 3 */}
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={4}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
-                <img src="profile3.jpg" alt="Creator 3" style={{ maxWidth: '75%', borderRadius: '10px' }} />
+                <img src="profile3.png" alt="Creator 3" style={{ maxWidth: '75%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom>
                   Caballes, Jeno Roch
                 </Typography>
