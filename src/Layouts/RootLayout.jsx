@@ -8,7 +8,7 @@ export default function RootLayout() {
         <Grid item>
           <nav>
             <Typography sx={{display: "inline"}}>SUGO</Typography>
-            <NavLink to='/'><Button sx={{marginLeft: 160}}>Home</Button></NavLink>
+            <NavLink to='/'><Button sx={{marginLeft: { xs: 0, sm: 1, md: 31, lg: 68, xl: 110 }}}>Home</Button></NavLink>
             <NavLink to='about'><Button>About Us</Button></NavLink>
             <NavLink to='contact'><Button>Contact Us</Button></NavLink>
             <NavLink to='login'><Button variant='contained' sx={{marginLeft: 3}}>Login</Button></NavLink>
