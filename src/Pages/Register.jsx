@@ -42,7 +42,7 @@ export default function SignUp() {
                 <img
                   src="./images/Logo.png"
                   alt="Sugo Logo"
-                  style={{ marginLeft: "140px", marginTop: "60px" }}
+                  style={{ marginLeft: "180px", marginTop: "60px", height: "200px", width: "200px" }}
                 />
               </Box>
 
@@ -58,7 +58,7 @@ export default function SignUp() {
                 label="Last Name"
                 size="normal"
                 variant="standard"
-                sx={{ width: 460, marginLeft: 8, marginTop: 4 }}
+                sx={{ width: 460, marginLeft: 8, marginTop: 1 }}
                 onChange={handleChange}
                 name="lastName"
               />
@@ -66,7 +66,7 @@ export default function SignUp() {
                 label="Email"
                 size="normal"
                 variant="standard"
-                sx={{ width: 460, marginLeft: 8, marginTop: 4 }}
+                sx={{ width: 460, marginLeft: 8, marginTop: 1 }}
                 onChange={handleChange}
                 name="email"
               />
@@ -75,7 +75,7 @@ export default function SignUp() {
                 size="normal"
                 type="password"
                 variant="standard"
-                sx={{ width: 460, marginLeft: 8, marginTop: 2 }}
+                sx={{ width: 460, marginLeft: 8, marginTop: 1 }}
                 onChange={handleChange}
                 name="password"
               />
@@ -84,7 +84,7 @@ export default function SignUp() {
                 size="normal"
                 type="password"
                 variant="standard"
-                sx={{ width: 460, marginLeft: 8, marginTop: 2 }}
+                sx={{ width: 460, marginLeft: 8, marginTop: 1 }}
                 onChange={handleChange}
                 name="confirmPassword"
                 error={!isPasswordMatch}
@@ -93,13 +93,13 @@ export default function SignUp() {
               <Button
                 variant="contained"
                 size="large"
-                sx={{ marginTop: 5, marginLeft: 8, marginBottom: 3, width: 460 }}
+                sx={{ marginTop: 5, marginLeft: 8, marginBottom: 2, width: 460 }}
                 onClick={handleSubmit}
                 disabled={!isPasswordMatch} // Disable button if passwords don't match
               >
                 Sign Up
               </Button>
-              <Typography sx={{ marginLeft: 20, display: "inline" }}>
+              <Typography sx={{ marginLeft: 23, display: "inline" }}>
                 Already have an account?{" "}
               </Typography>
               <NavLink to="/login">
