@@ -7,17 +7,17 @@ export default function Login() {
       <div className='gradientbg_2'>
         <Grid container justify='center' alignItems='center' direction='column'>
           <Grid item>
-            <Box sx={{ bgcolor: 'white', height: 700, width: 600, marginTop: 15, borderRadius: 5 }}>
+            <Paper elevation={4} sx={{ bgcolor: 'white', height: 700, width: 600, marginTop: 15, borderRadius: 5 }}>
               <Box>
                 <img src='./images/Logo.png' alt='Sugo Logo' style={{marginLeft: '140px', marginTop: '60px'}} />
               </Box>
 
-              <TextField label='Email' size='normal' variant='standard' sx={{ width: 460, marginLeft: 8, marginTop: 4 }} />
+              <TextField label='Email' size='normal' type='email' variant='standard' sx={{ width: 460, marginLeft: 8, marginTop: 4 }} />
               <TextField label='Password' size='normal' type='password' variant='standard' sx={{ width: 460, marginLeft: 8, marginTop: 2 }} />
-              <Button variant='contained' size='large' sx={{ marginTop: 5, marginLeft: 8, marginBottom: 3, width: 460 }}>Login</Button>
+              <Button variant='contained' size='large' type='submit' sx={{ marginTop: 5, marginLeft: 8, marginBottom: 3, width: 460 }}>Login</Button>
               <Typography sx={{ marginLeft: 20, display: 'inline'}}>Don't have an account yet? </Typography>
               <NavLink to='/register'><Typography sx={{ display: 'inline' }}>Register</Typography></NavLink>
-            </Box>
+            </Paper>
           </Grid>
         </Grid>
       </div>
