@@ -13,3 +13,9 @@ body {
   height: 100vh;
   background: linear-gradient(#333DAD, #00CCE5);
 }
+
+.gradientbg_3 {
+  width: 100vw;
+  height: 160vh;
+  background: linear-gradient(#333DAD, #00CCE5);
+}
