@@ -50,7 +50,7 @@ export default function SignUp() {
                 label="First Name"
                 size="normal"
                 variant="standard"
-                sx={{ width: 460, marginLeft: 8, marginTop: 4 }}
+                sx={{ width: 460, marginLeft: 8, marginTop: 3 }}
                 onChange={handleChange}
                 name="firstName"
               />
@@ -109,7 +109,6 @@ export default function SignUp() {
           </Grid>
         </Grid>
       </div>
-      {console.log("SignUp")}
     </>
   );
 }

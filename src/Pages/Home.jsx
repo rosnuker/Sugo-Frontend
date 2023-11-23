@@ -25,9 +25,7 @@ export default function Home() {
             </Box>
           </Grid>
         </Grid>
-      </div>
-
-      {console.log('Home')}        
+      </div>     
     </>
   )
 }
