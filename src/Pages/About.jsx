@@ -2,7 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 
 export default function About() {
   return (
-<div className='gradientbg_3'>
+    <div className='gradientbg_3'>
       <Grid container justify='center' alignItems='center' direction='row' spacing={4}>
         <Grid item xs={12} sm={6}>
           <Box sx={{ display: 'flex', justifyContent: 'center' }}>
@@ -24,7 +24,7 @@ export default function About() {
         </Grid>
 
         {/* Profiles */}
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={6}>
           <Grid container spacing={4}>
             {/* Profile 1 */}
             <Grid item xs={12} sm={4}>
@@ -40,7 +40,7 @@ export default function About() {
             </Grid>
 
             {/* Profile 2 */}
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
                 <img src="profile2.jpg" alt="Creator 2" style={{ maxWidth: '75%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom> 
@@ -53,7 +53,7 @@ export default function About() {
             </Grid>
 
             {/* Profile 3 */}
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={6}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
                 <img src="profile3.jpg" alt="Creator 3" style={{ maxWidth: '75%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom>
