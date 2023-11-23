@@ -2,6 +2,7 @@ import { Box, Grid, Typography } from "@mui/material";
 
 export default function About() {
   return (
+    <>
     <div className='gradientbg_3'>
       <Grid container justify='center' alignItems='center' direction='row' spacing={4}>
         <Grid item xs={12} sm={6}>
@@ -68,5 +69,8 @@ export default function About() {
         </Grid>
       </Grid>
     </div>
+
+    {console.log('About')}        
+    </>
   )
 }
