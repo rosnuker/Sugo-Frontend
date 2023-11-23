@@ -9,7 +9,7 @@ export default function Login() {
           <Grid item>
             <Box sx={{ bgcolor: 'white', height: 700, width: 600, marginTop: 15, borderRadius: 5 }}>
               <Box>
-                <img src='Logo.png' alt='Sugo Logo' style={{marginLeft: '140px', marginTop: '60px'}} />
+                <img src='./images/Logo.png' alt='Sugo Logo' style={{marginLeft: '140px', marginTop: '60px'}} />
               </Box>
 
               <TextField label='Email' size='normal' variant='standard' sx={{ width: 460, marginLeft: 8, marginTop: 4 }} />
