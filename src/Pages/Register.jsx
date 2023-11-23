@@ -40,7 +40,7 @@ export default function SignUp() {
             >
               <Box>
                 <img
-                  src="Logo.png"
+                  src="./images/Logo.png"
                   alt="Sugo Logo"
                   style={{ marginLeft: "140px", marginTop: "60px" }}
                 />
