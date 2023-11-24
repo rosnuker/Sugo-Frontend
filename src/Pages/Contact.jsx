@@ -9,7 +9,7 @@ const ContactUs = () => {
       <div className={styles.messageBox}>
 
       <Grid item xs={12} sm={6}>
-          <Box sx={{ bgcolor: 'white', height: 515, width: 950, marginTop: 18, marginRight: 70, marginLeft: 10, borderRadius: 4, opacity: '80%', padding: '20px' }}>
+          <Box sx={{ bgcolor: 'white', height: 515, width: 800, marginTop: 18, marginRight: 70, marginLeft: 10, borderRadius: 4, opacity: '80%', padding: '20px' }}>
 
         <div className={styles.nBacalsoAvenueContainer}>
           <p className={styles.nBacalsoAvenue}><h1>N. Bacalso Avenue, Cebu City, Philippines 6000</h1></p>

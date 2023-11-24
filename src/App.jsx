@@ -2,9 +2,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import "./App.css"
 import RootLayout from "./Layouts/RootLayout"
 
-import Home from "./Pages/Home"
 import About from "./Pages/About"
 import Contact from "./Pages/Contact"
+import CustomerDashboard from "./Pages/CustomerDashboard"
+import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import Register from "./Pages/Register"
 
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
   {
     path: 'register',
     element: <Register />,
-},
+  },
+  {
+    path: 'customer',
+    element: <CustomerDashboard />,
+  },
 ])
 
 function App() {
