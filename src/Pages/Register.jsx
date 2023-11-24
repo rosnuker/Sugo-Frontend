@@ -29,7 +29,8 @@ export default function SignUp() {
       <div className="gradientbg_2">
         <Grid container justify="center" alignItems="center" direction="column">
           <Grid item>
-            <Box
+            <Paper
+              elevation={4}
               sx={{
                 bgcolor: "white",
                 height: 700,
@@ -105,7 +106,7 @@ export default function SignUp() {
               <NavLink to="/login">
                 <Typography sx={{ display: "inline" }}>Login</Typography>
               </NavLink>
-            </Box>
+            </Paper>
           </Grid>
         </Grid>
       </div>
