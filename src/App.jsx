@@ -7,6 +7,8 @@ import About from "./Pages/About"
 import Contact from "./Pages/Contact"
 import Login from "./Pages/Login"
 import Register from "./Pages/Register"
+import AdminLayout from "./Layouts/AdminLayout"
+import DashboardAdmin from "./Pages/Admin/Dashboard"
 
 const router = createBrowserRouter([
   {
@@ -34,7 +36,17 @@ const router = createBrowserRouter([
   {
     path: 'register',
     element: <Register />,
-},
+  },
+  {
+    path:'admin',
+    element: <AdminLayout />,
+    children: [
+      {
+        index: true,
+        element: <DashboardAdmin />,
+      },
+    ],
+  },
 ])
 
 function App() {
