@@ -14,8 +14,8 @@ export default function RootLayout() {
                   <NavLink to='/'><Button sx={{marginLeft: { xs: 0, sm: 1, md: 4, lg: 40, xl: 85 }}}>Home</Button></NavLink>
                   <NavLink to='about'><Button>About Us</Button></NavLink>
                   <NavLink to='contact'><Button>Contact Us</Button></NavLink>
-                  <NavLink to='login'><Button variant='contained' sx={{marginLeft: 3}}>Login</Button></NavLink>
-                  <NavLink to='register'><Button variant='outlined' sx={{marginLeft: 1}}>Register</Button></NavLink>
+                  <NavLink to='login'><Button variant='contained' sx={{ bgcolor: '#333DAD', marginLeft: 3 }}>Login</Button></NavLink>
+                  <NavLink to='register'><Button variant='outlined' sx={{ marginLeft: 1 }}>Register</Button></NavLink>
                 </nav>
               </Toolbar>
             </AppBar>

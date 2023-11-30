@@ -14,7 +14,7 @@ export default function Login() {
 
               <TextField label='Email' size='normal' type='email' variant='standard' sx={{ width: 460, marginLeft: 8, marginTop: 4 }} />
               <TextField label='Password' size='normal' type='password' variant='standard' sx={{ width: 460, marginLeft: 8, marginTop: 2 }} />
-              <Button variant='contained' size='large' type='submit' sx={{ marginTop: 5, marginLeft: 8, marginBottom: 3, width: 460 }}>Login</Button>
+              <Button variant='contained' size='large' type='submit' sx={{ bgcolor: '#333DAD', marginTop: 5, marginLeft: 8, marginBottom: 3, width: 460 }}>Login</Button>
               <Typography sx={{ marginLeft: 20, display: 'inline'}}>Don't have an account yet? </Typography>
               <NavLink to='/register'><Typography sx={{ display: 'inline' }}>Register</Typography></NavLink>
             </Paper>

@@ -94,7 +94,7 @@ export default function SignUp() {
               <Button
                 variant="contained"
                 size="large"
-                sx={{ marginTop: 5, marginLeft: 8, marginBottom: 2, width: 460 }}
+                sx={{ bgcolor: '#333DAD', marginTop: 5, marginLeft: 8, marginBottom: 2, width: 460 }}
                 onClick={handleSubmit}
                 disabled={!isPasswordMatch} // Disable button if passwords don't match
               >

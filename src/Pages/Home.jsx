@@ -20,7 +20,7 @@ export default function Home() {
                 Need a favor? Want something delivered? Craving a specific dish from your favorite local restaurant? Look no further than SUGO!
               </Typography>
 
-              <NavLink to='/login'><Button variant='contained' size='large' sx={{ marginLeft: 4, marginTop: 5 }}>
+              <NavLink to='/login'><Button variant='contained' size='large' sx={{ bgcolor: '#333DAD', marginLeft: 4, marginTop: 5 }}>
                 Get Started
               </Button></NavLink>
             </Box>
