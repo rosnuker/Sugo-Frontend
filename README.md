@@ -1,6 +1,6 @@
 # Sugo-Frontend
 
 To-Do:
-- [] Admin
-- [] Customer
-- [] Delivery/Courier
+- [ ] Admin
+- [ ] Customer
+- [ ] Delivery/Courier
