@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function SignUp() {
+  let navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -16,11 +19,25 @@ export default function SignUp() {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleSubmit = () => {
-    // Add your form submission logic here
-    // You can access the form data in formData object
-    console.log(formData);
-  };
+  const onSubmit = async (e) => {
+    await axios.post('http://localhost:8080/customer/insertCustomer', {
+      fname: formData.firstName,
+      lname: formData.lastName,
+      email: formData.email,
+      password: formData.password
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if (!(response.status===200)) {
+        throw new Error('There is a problem with the request');
+      }
+      navigate('/login');
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error)
+    })
+  }
 
   const isPasswordMatch = formData.password === formData.confirmPassword;
 
@@ -95,7 +112,7 @@ export default function SignUp() {
                 variant="contained"
                 size="large"
                 sx={{ bgcolor: '#333DAD', marginTop: 5, marginLeft: 8, marginBottom: 2, width: 460 }}
-                onClick={handleSubmit}
+                onClick={onSubmit}
                 disabled={!isPasswordMatch} // Disable button if passwords don't match
               >
                 Sign Up
