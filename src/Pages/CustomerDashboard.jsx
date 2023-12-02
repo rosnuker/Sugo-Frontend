@@ -159,7 +159,7 @@ export default function PrimarySearchAppBar() {
 
   return (
 
-    <div className='gradientbg_1'>
+    <div className='gradientbg_2'>
       <Box
         sx={{
           width: '200px', // Adjust the width as needed
@@ -181,7 +181,7 @@ export default function PrimarySearchAppBar() {
       >
         {/* You can add content/icons inside the box if needed */
         <div>
-            <NavLink to='/register'>
+            <NavLink to='/specificsugo'>
         <img className='logo' alt="" src="/images/sugobox.svg"/>
             </NavLink>
         </div>
@@ -205,9 +205,7 @@ export default function PrimarySearchAppBar() {
             noWrap
             component="div"
             sx={{ display: { xs: 'none', sm: 'block' } }}
-          >
-            
-            MUI
+          ><h1>SUGO</h1>
           </Typography>
           <Search>
             <SearchIconWrapper>
@@ -263,6 +261,116 @@ export default function PrimarySearchAppBar() {
       {renderMobileMenu}
       {renderMenu}
     </Box>
+
+    <div>
+      <Box
+        sx={{
+          width: '400px', 
+          height: '300px', 
+          backgroundColor: '#ccc', 
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '35px', 
+          position: 'absolute',
+          top: '200px',
+          right: '600px', 
+        }}
+        onClick={() => {
+          console.log('Box clicked!');
+        }}
+        >
+        {/*add content/icons inside the box if needed */
+        <div>
+        </div>
+        }
+      </Box>
+      </div>
+
+      <div>
+      <Box
+        sx={{
+          width: '400px', 
+          height: '300px', 
+          backgroundColor: '#ccc', 
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '35px', 
+          position: 'absolute',
+          top: '200px',
+          right: '120px', 
+        }}
+        onClick={() => {
+          console.log('Box clicked!');
+        }}
+        >
+        {/*add content/icons inside the box if needed */
+        <div>
+            <h1>Adrian Caballes</h1>
+        </div>
+        }
+      </Box>
+      </div>
+
+      <div>
+      <Box
+        sx={{
+          width: '400px', 
+          height: '300px', 
+          backgroundColor: '#ccc', 
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '35px', 
+          position: 'absolute',
+          top: '550px',
+          right:'600px', 
+        }}
+        onClick={() => {
+          console.log('Box clicked!');
+        }}
+        >
+        {/*add content/icons inside the box if needed */
+        <div>
+            <h1>Jeno Gwapo</h1>
+        </div>
+        }
+      </Box>
+      </div>
+
+      <div>
+      <Box
+        sx={{
+          width: '400px', 
+          height: '300px', 
+          backgroundColor: '#ccc', 
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: '35px', 
+          position: 'absolute',
+          top: '550px',
+          right: '120px',  
+        }}
+        onClick={() => {
+          console.log('Box clicked!');
+        }}
+        >
+        {/*add content/icons inside the box if needed */
+        <div>
+            <h1>Jeno Gwapo</h1>
+        </div>
+        }
+      </Box>
+      </div>
+
+      
+
     </div>
   );
 }
