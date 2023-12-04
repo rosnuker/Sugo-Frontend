@@ -1,4 +1,7 @@
-import { Box, Grid, Paper, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import axios from "axios";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
@@ -13,32 +16,48 @@ const rows = [
 ];
 
 export default function DashboardAdmin() {
+  const [users, setUsers] = useState([{}]);
+
+  useEffect(() => {
+    axios.get('http://localhost:8080/getAllUsers')
+    .then(response => {
+      if (!(response.status === 200)) {
+        throw new Error('There is a problem with the request');
+      }
+      console.log(response)
+      setUsers(response.data);
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error)
+    })
+  }, [])
+
   return (
     <div className="gradientbg_2">
       <Grid container justify='center' alignItems='center' direction='column'>
         <Box sx={{ bgcolor: '#e6e6e6', height: 785, width: 1600, marginLeft: 30, marginTop: 15, borderRadius: 7 }}>
-            <TableContainer component={Paper} sx={{marginTop: 10, marginLeft: 70, height: 365, width: 500}}>
+          <Typography variant='h5' sx={{ marginLeft: 3, marginTop: 4, textDecoration: 'underline' }}>Users</Typography>
+          <TableContainer component={Paper} sx={{marginTop: 1, marginLeft: 3, height: 365, width: 550}}>
+            <Table stickyHeader aria-label='sticky table'>
               <TableHead>
                 <TableRow>
-                  <TableCell>Dessert (100g serving)</TableCell>
-                  <TableCell align='right'>Calories</TableCell>
-                  <TableCell align='right'>Fat&nbsp;(g)</TableCell>
-                  <TableCell align='right'>Carbs&nbsp;(g)</TableCell>
-                  <TableCell align='right'>Protein&nbsp;(g)</TableCell>
+                  <TableCell sx={{ fontWeight: 'bold' }}>First Name</TableCell>
+                  <TableCell align='right' sx={{ fontWeight: 'bold' }}>Last Name</TableCell>
+                  <TableCell align='center' sx={{ fontWeight: 'bold' }}>Email</TableCell>
+                  <TableCell align='right' sx={{ fontWeight: 'bold' }}>isDeleted</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
-                  <TableRow key={row.name} sx={{ '&: last-child td, &: last-child th': { border: 0} }}>
-                    <TableCell component='th' scope='row'>{row.name}</TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                {users.map((row, index) => (
+                  <TableRow key={'user_' + index} sx={{ '&: last-child td, &: last-child th': { border: 0} }}>
+                    <TableCell component='th' scope='row'>{row.fname}</TableCell>
+                    <TableCell align="left">{row.lname}</TableCell>
+                    <TableCell align="left">{row.email}</TableCell>
+                    <TableCell align="left">{String(row.deleted)}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>
-            </TableContainer>
+            </Table>
+          </TableContainer>
         </Box>
       </Grid>
     </div>

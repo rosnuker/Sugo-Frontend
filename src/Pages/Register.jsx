@@ -20,11 +20,12 @@ export default function SignUp() {
   };
 
   const onSubmit = async (e) => {
-    await axios.post('http://localhost:8080/customer/insertCustomer', {
+    await axios.post('http://localhost:8080/registerUser', {
       fname: formData.firstName,
       lname: formData.lastName,
       email: formData.email,
-      password: formData.password
+      password: formData.password,
+      role: 'user'
     }, {
       headers: {
         'Content-Type': 'application/json'

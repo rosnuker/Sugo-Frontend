@@ -17,7 +17,7 @@ export default function Login() {
   }
 
   const onSubmit = async (e) => {
-    await axios.post('http://localhost:8080/customer/login', {
+    await axios.post('http://localhost:8080/loginUser', {
       email: loginData.email,
       password: loginData.password
     }, {
