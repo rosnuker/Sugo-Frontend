@@ -1,4 +1,5 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
+import { NavLink } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -19,9 +20,9 @@ export default function Home() {
                 Need a favor? Want something delivered? Craving a specific dish from your favorite local restaurant? Look no further than SUGO!
               </Typography>
 
-              <Button variant='contained' size='large' sx={{ marginLeft: 4, marginTop: 5 }}>
+              <NavLink to='/login'><Button variant='contained' size='large' sx={{ bgcolor: '#333DAD', marginLeft: 4, marginTop: 5 }}>
                 Get Started
-              </Button>
+              </Button></NavLink>
             </Box>
           </Grid>
 
