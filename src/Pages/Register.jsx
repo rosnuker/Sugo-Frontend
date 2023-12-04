@@ -30,7 +30,7 @@ export default function SignUp() {
         'Content-Type': 'application/json'
       }
     }).then(response => {
-      if (!(response.status===200)) {
+      if (!(response.status === 200)) {
         throw new Error('There is a problem with the request');
       }
       navigate('/login');
