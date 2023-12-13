@@ -8,7 +8,6 @@ import Login from "./Pages/Login";
 import Register from "./Pages/Register";
 import SpecificSugo from "./Pages/SpecificSugo";
 
-
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -43,5 +42,5 @@ export const router = createBrowserRouter([
   {
     path: 'specificsugo',
     element: <SpecificSugo />,
-  }
+  },
 ]);
