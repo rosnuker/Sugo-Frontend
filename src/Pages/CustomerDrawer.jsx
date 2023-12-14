@@ -1,12 +1,12 @@
 import { Box, Drawer, IconButton, Typography } from "@mui/material";
 import React, { useState } from "react";
 
+
 export const CustomerEditProfile = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     return (
         <>
         <IconButton size="large" edge='start' color="inherit" aria-label="logo" onClick={() => setIsDrawerOpen(true)}>
-            <menu></menu>
         </IconButton>
         <div className="bggradient_2">
         <Drawer 

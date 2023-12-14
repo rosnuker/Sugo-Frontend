@@ -7,7 +7,6 @@ import About from "./Pages/About"
 import DashboardAdmin from "./Pages/Admin/Dashboard"
 import Contact from "./Pages/Contact"
 import CustomerDashboard from "./Pages/CustomerDashboard"
-import CustomerDrawer from "./Pages/CustomerDrawer"
 import DeliveryDashboard from "./Pages/DeliveryDashboard"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
@@ -72,10 +71,6 @@ const router = createBrowserRouter([
   {
     path: 'sugoarrived',
     element: <SugoArrived />,
-  },
-  {
-    path: 'customerdrawer',
-    element: <CustomerDrawer />,
   }
 ])
 
