@@ -10,12 +10,12 @@ body {
 
 .gradientbg_2 {
   width: 100vw;
-  height: 100vh;
+  height: 130vh;
   background: linear-gradient(#333DAD, #00CCE5);
 }
 
 .gradientbg_3 {
   width: 100vw;
-  height: 160vh;
+  height: 250vh;
   background: linear-gradient(#333DAD, #00CCE5);
 }

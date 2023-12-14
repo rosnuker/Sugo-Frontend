@@ -29,7 +29,7 @@ export default function About() {
             {/* Profile 1 */}
             <Grid item xs={12} sm={4}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
-                <img src="profile1.png" alt="Creator 1" style={{ maxWidth: '75%', borderRadius: '10px' }} />
+                <img src="/images/adrian.png" alt="Creator 1" style={{ maxWidth: '75%', maxHeight: '75%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom>
                   Torqudeo, Adrian Carlo
                 </Typography>
@@ -42,7 +42,7 @@ export default function About() {
             {/* Profile 2 */}
             <Grid item xs={12} sm={4}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
-                <img src="profile2.png" alt="Creator 2" style={{ maxWidth: '75%', borderRadius: '10px' }} />
+                <img src="/images/ampol.png" alt="Creator 2" style={{ maxWidth: '75%', maxHeight: '-50%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom> 
                   Arisgar, Aldrich Alex
                 </Typography>
@@ -55,7 +55,7 @@ export default function About() {
             {/* Profile 3 */}
             <Grid item xs={12} sm={4}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
-                <img src="profile3.png" alt="Creator 3" style={{ maxWidth: '75%', borderRadius: '10px' }} />
+                <img src="/images/jeno.png" alt="Creator 3" style={{ maxWidth: '75%', maxHeight: '75%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom>
                   Caballes, Jeno Roch
                 </Typography>
