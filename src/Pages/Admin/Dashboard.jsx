@@ -1,65 +1,93 @@
-import { Box, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Group } from "@mui/icons-material";
+import { Box, Card, CardContent, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+import { useState, useEffect } from "react";
 
 export default function DashboardAdmin() {
-  const [users, setUsers] = useState([{}]);
+  const [users, setUsers] = useState([]);
+  const [userCount, setUserCount] = useState();
+  const [selectedUser, setSelectedUser] = useState([]);
 
-  useEffect(() => {
-    axios.get('http://localhost:8080/getAllUsers')
+  const getUsers = async () => {
+    await axios.get('http://localhost:8080/getAllUsers')
     .then(response => {
       if (!(response.status === 200)) {
         throw new Error('There is a problem with the request');
       }
-      console.log(response)
       setUsers(response.data);
     }).catch(error => {
-      console.log('There was a problem with the fetch operation:', error)
+      console.log('There was a problem with the fetch operation:', error);
     })
-  }, [])
+  };
 
-  return (
-    <div className="gradientbg_2">
+  const getCount = async () => {
+    await axios.get('http://localhost:8080/countUser')
+    .then(response => {
+      if (!(response.status === 200)) {
+        throw new Error('There is a problem with the request');
+      }
+      setUserCount(response.data);
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error);
+    })
+  };
+
+  useEffect(() => {
+    getUsers();
+    getCount();
+  }, []);
+
+  const columns = [
+    { field: 'id', headerName: 'ID', width: 50 },
+    { field: 'fname', headerName: 'First Name', width: 130 },
+    { field: 'lname', headerName: 'Last Name', width: 130 },
+    { field: 'email', headerName: 'Email', width: 220 },
+    { field: 'deleted', headerName: 'Is Deleted', width: 90 },
+  ];
+
+  const rows = users.map((row) => ({
+    id: row.uid,
+    fname: row.fname,
+    lname: row.lname,
+    email: row.email,
+    deleted: row.deleted,
+  }));
+
+  const onRowsSelectionHandler = (ids) => {
+    const selectedRowsData = ids.map((id) => rows.find((row) => row.id === id));
+    console.log(selectedRowsData);
+  };
+
+  return <div className="gradientbg_2">
       <Grid container justify='center' alignItems='center' direction='column'>
         <Box sx={{ bgcolor: '#e6e6e6', height: 785, width: 1600, marginLeft: 30, marginTop: 15, borderRadius: 7 }}>
+          <Card sx={{ width: 215, height: 100, marginLeft: 3, marginTop: 5 }}>
+             <CardContent>
+               <Group sx={{ height: 75, width: 75}}/>
+               <Typography marginTop={-8} marginLeft={12}>Total Users</Typography>
+               <Typography marginLeft={12}>{userCount}</Typography>
+             </CardContent>
+           </Card>
           <Typography variant='h5' sx={{ marginLeft: 3, marginTop: 4, textDecoration: 'underline' }}>Users</Typography>
-          <TableContainer component={Paper} sx={{marginTop: 1, marginLeft: 3, height: 365, width: 550}}>
-            <Table stickyHeader aria-label='sticky table'>
-              <TableHead>
-                <TableRow>
-                  <TableCell sx={{ fontWeight: 'bold' }}>First Name</TableCell>
-                  <TableCell align='right' sx={{ fontWeight: 'bold' }}>Last Name</TableCell>
-                  <TableCell align='center' sx={{ fontWeight: 'bold' }}>Email</TableCell>
-                  <TableCell align='right' sx={{ fontWeight: 'bold' }}>isDeleted</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {users.map((row, index) => (
-                  <TableRow key={'user_' + index} sx={{ '&: last-child td, &: last-child th': { border: 0} }}>
-                    <TableCell component='th' scope='row'>{row.fname}</TableCell>
-                    <TableCell align="left">{row.lname}</TableCell>
-                    <TableCell align="left">{row.email}</TableCell>
-                    <TableCell align="left">{String(row.deleted)}</TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          <Paper sx={{ width: 600, height: 550, marginLeft: 3 }}>
+            <DataGrid 
+              rows={rows}
+              columns={columns}
+              initialState={{ 
+                pagination: { 
+                  paginationModel: { 
+                    page: 0, 
+                    pageSize: 5 },
+                  },
+                }} 
+              pageSizeOptions={[5, 10]} 
+              checkboxSelection
+              onRowSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}
+            />
+          </Paper>
         </Box>
       </Grid>
-    </div>
-  )
+  </div>;
+
 }
