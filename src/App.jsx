@@ -8,6 +8,8 @@ import DashboardAdmin from "./Pages/Admin/Dashboard"
 import Contact from "./Pages/Contact"
 import CustomerDashboard from "./Pages/CustomerDashboard"
 import DeliveryDashboard from "./Pages/DeliveryDashboard"
+import EditProfileDeliver from "./Pages/EditProfileDeliver"
+import EditProfileUser from "./Pages/EditProfileUser"
 import Home from "./Pages/Home"
 import Login from "./Pages/Login"
 import Register from "./Pages/Register"
@@ -71,6 +73,14 @@ const router = createBrowserRouter([
   {
     path: 'sugoarrived',
     element: <SugoArrived />,
+  },
+  {
+    path: 'editprofileuser',
+    element: <EditProfileUser />,
+  },
+  {
+    path: 'editprofiledeliver',
+    element: <EditProfileDeliver />,
   }
 ])
 
