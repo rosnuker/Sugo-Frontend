@@ -6,7 +6,6 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
 import { Drawer } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
 import Box from '@mui/material/Box';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
@@ -130,7 +129,7 @@ import ListItemText from '@mui/material/ListItemText';
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+        <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem>
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
       </Menu>
     );
@@ -152,26 +151,7 @@ import ListItemText from '@mui/material/ListItemText';
         open={isMobileMenuOpen}
         onClose={handleMobileMenuClose}
       >
-        <MenuItem>
-          <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-            <Badge badgeContent={4} color="error">
-              <MailIcon />
-            </Badge>
-          </IconButton>
-          <p>Messages</p>
-        </MenuItem>
-        <MenuItem>
-          <IconButton
-            size="large"
-            aria-label="show 17 new notifications"
-            color="inherit"
-          >
-            <Badge badgeContent={17} color="error">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
-        </MenuItem>
+
         <MenuItem onClick={handleProfileMenuOpen}>
           <IconButton
             size="large"
@@ -193,17 +173,17 @@ import ListItemText from '@mui/material/ListItemText';
       <div className='gradientbg_2'>
         <Box
           sx={{
-            width: '200px', // Adjust the width as needed
-            height: '200px', // Adjust the height as needed
-            backgroundColor: '#ccc', // Adjust the background color as needed
+            width: '200px',
+            height: '200px',
+            backgroundColor: '#ccc', 
             cursor: 'pointer',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            borderRadius: '8px', // Adjust the border radius as needed
+            borderRadius: '8px',
             position: 'absolute',
-            top: '250px', // Center vertically
-            left: '320px', // Adjust the distance from the left edge
+            top: '250px',
+            left: '300px',
           }}
           onClick={() => {
             // Handle click event for the box
@@ -250,20 +230,6 @@ import ListItemText from '@mui/material/ListItemText';
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                <Badge badgeContent={4} color="error">
-                  <MailIcon />
-                </Badge>
-              </IconButton>
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={17} color="error">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
               <IconButton
                 size="large"
                 edge="end"
@@ -303,73 +269,86 @@ import ListItemText from '@mui/material/ListItemText';
         >
           {/* Content of the drawer goes here */}
           <div>
-            <Box sx={{ bgcolor: '#00cce5', height: '200px', width: '400px'}}>
-              asdwqdasdasdasdasd
+            <Box sx={{ bgcolor: '#00cce5', height: '300px', width: '400px'}}>
+              <img 
+                  src='images/Logo.png' 
+                  alt='' 
+                  style={{width: '200px', height: '250', marginLeft: 90, marginRight: 90, marginTop: 45}}
+                  ></img>
             </Box>
-            <h1><img src='images/logogo.png' alt='' ></img>SUGO</h1>
-          <List>
-      <ListItem button>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="Inbox" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <MailIcon />
-        </ListItemIcon>
-        <ListItemText primary="Email" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <HomeIcon />
-        </ListItemIcon>
-        <ListItemText primary="Home" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <DashboardIcon />
-        </ListItemIcon>
-        <ListItemText primary="Dashboard" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <InboxIcon />
-        </ListItemIcon>
-        <ListItemText primary="Inbox" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <ShoppingCartIcon />
-        </ListItemIcon>
-        <ListItemText primary="Cart" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <HistoryIcon />
-        </ListItemIcon>
-        <ListItemText primary="History" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <NotificationsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Notifications" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <SettingsIcon />
-        </ListItemIcon>
-        <ListItemText primary="Settings" />
-      </ListItem>
-      <ListItem button>
-        <ListItemIcon>
-          <ExitToAppIcon />
-        </ListItemIcon>
-        <ListItemText primary="Logout" />
-      </ListItem>
-      {/* Add more items as needed */}
-    </List>
+            
+              <List>
+                <ListItem button>
+                  <ListItemIcon>
+                    <InboxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Inbox" />
+                </ListItem>
+
+                <ListItem button>
+                    <ListItemIcon>
+                      <MailIcon />
+                    </ListItemIcon>
+                  <ListItemText primary="Email" />
+                </ListItem>
+
+                <ListItem button>
+                  <ListItemIcon>
+                      <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Home" />
+                </ListItem>
+
+                <ListItem button>
+                  <ListItemIcon>
+                    <DashboardIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard" />
+                </ListItem>
+
+                <ListItem button>
+                  <ListItemIcon>
+                    <InboxIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Inbox" />
+                </ListItem>
+
+                <ListItem button>
+                  <ListItemIcon>
+                    <ShoppingCartIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Cart" />
+                </ListItem>
+
+                <ListItem button>
+                  <ListItemIcon>
+                    <HistoryIcon />
+                </ListItemIcon>
+                <ListItemText primary="History" />
+              </ListItem>
+
+                <ListItem button>
+                  <ListItemIcon>
+                  <NotificationsIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Notifications" />
+                </ListItem>
+
+                <ListItem button>
+                <ListItemIcon>
+                    <SettingsIcon />
+                </ListItemIcon>
+                <ListItemText primary="Settings" />
+                </ListItem>
+
+                <ListItem button>
+                  <ListItemIcon>
+                  <ExitToAppIcon />
+                  </ListItemIcon>
+                <ListItemText primary="Logout" />
+                </ListItem>
+              {/* Add more items as needed */}
+            </List>
           </div>
         </Drawer>
 
@@ -380,8 +359,8 @@ import ListItemText from '@mui/material/ListItemText';
       <div>
         <Box
           sx={{
-            width: '400px', 
-            height: '300px', 
+            width: '300px', 
+            height: '200px', 
             backgroundColor: '#ccc', 
             cursor: 'pointer',
             display: 'flex',
@@ -389,8 +368,8 @@ import ListItemText from '@mui/material/ListItemText';
             justifyContent: 'center',
             borderRadius: '35px', 
             position: 'absolute',
-            top: '200px',
-            right: '600px', 
+            top: '180px',
+            right: '430px', 
           }}
           onClick={() => {
             console.log('Box clicked!');
@@ -406,8 +385,8 @@ import ListItemText from '@mui/material/ListItemText';
         <div>
         <Box
           sx={{
-            width: '400px', 
-            height: '300px', 
+            width: '300px', 
+            height: '200px', 
             backgroundColor: '#ccc', 
             cursor: 'pointer',
             display: 'flex',
@@ -415,8 +394,8 @@ import ListItemText from '@mui/material/ListItemText';
             justifyContent: 'center',
             borderRadius: '35px', 
             position: 'absolute',
-            top: '200px',
-            right: '120px', 
+            top: '180px',
+            right: '70px', 
           }}
           onClick={() => {
             console.log('Box clicked!');
@@ -424,7 +403,7 @@ import ListItemText from '@mui/material/ListItemText';
           >
           {/*add content/icons inside the box if needed */
           <div>
-              <h1>Adrian Caballes</h1>
+              
           </div>
           }
         </Box>
@@ -433,8 +412,8 @@ import ListItemText from '@mui/material/ListItemText';
         <div>
         <Box
           sx={{
-            width: '400px', 
-            height: '300px', 
+            width: '300px', 
+            height: '200px', 
             backgroundColor: '#ccc', 
             cursor: 'pointer',
             display: 'flex',
@@ -442,8 +421,8 @@ import ListItemText from '@mui/material/ListItemText';
             justifyContent: 'center',
             borderRadius: '35px', 
             position: 'absolute',
-            top: '550px',
-            right:'600px', 
+            top: '450px',
+            right:'430px', 
           }}
           onClick={() => {
             console.log('Box clicked!');
@@ -451,7 +430,7 @@ import ListItemText from '@mui/material/ListItemText';
           >
           {/*add content/icons inside the box if needed */
           <div>
-              <h1>Jeno Gwapo</h1>
+              
           </div>
           }
         </Box>
@@ -460,8 +439,8 @@ import ListItemText from '@mui/material/ListItemText';
         <div>
         <Box
           sx={{
-            width: '400px', 
-            height: '300px', 
+            width: '300px', 
+            height: '200px', 
             backgroundColor: '#ccc', 
             cursor: 'pointer',
             display: 'flex',
@@ -469,8 +448,8 @@ import ListItemText from '@mui/material/ListItemText';
             justifyContent: 'center',
             borderRadius: '35px', 
             position: 'absolute',
-            top: '550px',
-            right: '120px',  
+            top: '450px',
+            right: '70px',  
           }}
           onClick={() => {
             console.log('Box clicked!');
@@ -478,7 +457,7 @@ import ListItemText from '@mui/material/ListItemText';
           >
           {/*add content/icons inside the box if needed */
           <div>
-              <h1>Jeno Gwapo</h1>
+              
           </div>
           }
         </Box>
