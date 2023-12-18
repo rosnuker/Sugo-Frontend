@@ -36,9 +36,9 @@ const EditProfileDeliver = () => {
       <Box width="50%" height="60%" display="flex" bgcolor="white" boxShadow={2} borderRadius={8} padding={3} alignItems="center" marginTop={5}>
         <Box display="flex" flexDirection="column" alignItems="center" width="100%">
           <Box display="flex" alignItems="center">
-            <img src='images/jeno.png' alt="Pikshor" style={{ width: '175px', height: '150px', borderRadius: '25px' }} />
+            <img src='images/Frame 22.png' alt="Pikshor" style={{ width: '175px', height: '150px', borderRadius: '25px' }} />
             <Typography variant="h5" style={{ marginLeft: '20px', marginBottom: '15px' }}>
-              Jeno Roch Caballes
+              Jane Doe
             </Typography>
           </Box>
 

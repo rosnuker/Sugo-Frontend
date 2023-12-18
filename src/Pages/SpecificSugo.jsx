@@ -17,35 +17,39 @@ export default function SpecificSugo() {
           </Button>
           <img src='images/Logo.svg' alt="Logo" style={{ width: '250px', height: '150px' }} />
         </Box>
-        <Typography variant='h5' component="strong" style={{color: 'white'}}>Sugo not on the list?</Typography>
+        <Typography variant="h4" component="strong" style={{ whiteSpace: 'nowrap',  color: 'white' , fontFamily: 'Arial', marginLeft: '150px'}}>
+          Sugo not on the list?
+        </Typography>
         <TextField
           label="Specific Command"
           variant="outlined"
-          fullWidth
+          className="custom_textfield_1"
           multiline
+          style={{ color: 'white', marginLeft: '150px' }}
           rows={4}
-          InputProps={{ style: { color: 'white' } }}
-          InputLabelProps={{ style: { color: 'white' } }}
-          style={{ marginBottom: '50px' }}
+          InputProps={{ style: { color: 'black' } }}
+          InputLabelProps={{ style: { color: 'black' } }}
         />
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
           <TextField
             label="Location"
             variant="outlined"
-            style={{ width: '45%' }}
-            InputProps={{ style: { color: 'white' } }}
-            InputLabelProps={{ style: { color: 'white' } }}
+            className="custom_textfield"
+            style={{ width: '30%', color: 'white', marginLeft: '150px' }}
+            InputProps={{ style: { color: 'black' } }}
+            InputLabelProps={{ style: { color: 'black' } }}
           />
           <TextField
             label="Payment Method"
             variant="outlined"
-            style={{ width: '45%' }}
-            InputProps={{ style: { color: 'white' } }}
-            InputLabelProps={{ style: { color: 'white' } }}
+            className="custom_textfield"
+            style={{ width: '30%', marginRight: '130px' }}
+            InputProps={{ style: { color: 'black' } }}
+            InputLabelProps={{ style: { color: 'black' } }}
           />
         </div>
         <Box display="flex" justifyContent="flex-end" marginTop={3}>
-          <Button variant="contained" size="large" sx={{ bgcolor: '#333DAD', color: 'white', marginRight: '50px' }}>
+          <Button variant="contained" size="large" sx={{ bgcolor: '#333DAD', color: 'white', marginRight: '130px' }}>
             Next
           </Button>
         </Box>
