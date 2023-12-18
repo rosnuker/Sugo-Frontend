@@ -1,8 +1,8 @@
-import { Box, Button, TextField, Typography } from '@mui/material';
 import React, { useState } from 'react';
+import { Box, Button, TextField, Typography } from '@mui/material';
 
 const EditProfileDeliver = () => {
-  const [deliverData, setDeliverData] = useState({
+  const [userData, setUserData] = useState({
     firstName: '',
     lastName: '',
     email: '',
@@ -12,99 +12,92 @@ const EditProfileDeliver = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setDeliverData({
-      ...deliverData,
+    setUserData({
+      ...userData,
       [name]: value
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     console.log('Updated deliverer data:', deliverData);
-
   };
 
-    return (
-      <div>
-      <Box className="gradientbg_2" minHeight="100vh" display="flex" flexDirection="column" alignItems="center">
-  
-        <Box width="100%" height="10%" padding={2} display="flex" justifyContent="space-between" alignItems="right">
-          <Button onClick={() => console.log('Back clicked')} style={{ marginLeft: 30 }}><h4>Back</h4></Button>
-          <Typography variant="h4" component="strong" style={{ whiteSpace: 'nowrap', marginTop: '23px', marginLeft: '90px', color: 'white' , fontFamily: 'Arial'}}>
-            Edit Profile
-          </Typography>
-          <img src='images/Logo.svg' alt="Logo" style={{ width: '250px', height: '150px' }} />
-        </Box>
-  
-        <Box width="60%" height="110%" display="flex" bgcolor="white" boxShadow={2} borderRadius={8} padding={3}>
-  
-          <Box>
-            {/* Content for the edit profile */}
-            <form onSubmit={handleSubmit}>
-              {/* Form fields */}
-                    <Box display="flex" flexDirection="column" marginTop={1}>
-                      <TextField
-                        label="First Name"
-                        variant="outlined"
-                        fullWidth
-                        name="firstName"
-                        value={deliverData.firstName}
-                        onChange={handleChange}
-                        style={{ marginBottom: '10px' }}
-                      />
-                      <TextField
-                        label="Last Name"
-                        variant="outlined"
-                        fullWidth
-                        name="lastName"
-                        value={deliverData.lastName}
-                        onChange={handleChange}
-                        style={{ marginBottom: '10px' }}
-                      />
-                      <TextField
-                        label="Email"
-                        variant="outlined"
-                        fullWidth
-                        type="email"
-                        name="email"
-                        value={deliverData.email}
-                        onChange={handleChange}
-                        style={{ marginBottom: '10px' }}
-                      />
-                      <TextField
-                        label="Password"
-                        variant="outlined"
-                        fullWidth
-                        type="password"
-                        name="password"
-                        value={deliverData.password}
-                        onChange={handleChange}
-                        style={{ marginBottom: '10px' }}
-                      />
-                      <TextField
-                        label="Confirm Password"
-                        variant="outlined"
-                        fullWidth
-                        type="password"
-                        name="confirmPassword"
-                        value={deliverData.confirmPassword}
-                        onChange={handleChange}
-                        style={{ marginBottom: '10px', width: '550px' }}
-                      />
-                      <Box textAlign="center">
-                        <Button variant="contained" size="large" type="submit" sx={{ bgcolor: '#333DAD', marginTop: 2, marginRight: 5 }}>
-                          Save Changes
-                        </Button>
-                      </Box>
-                  </Box>
-              </form>
+  return (
+    <Box className="gradientbg_2" minHeight="100vh" display="flex" flexDirection="column" alignItems="center">
+      <Box width="100%" height="10%" padding={2} display="flex" justifyContent="space-between" alignItems="center">
+        <Button onClick={() => console.log('Back clicked')} style={{ marginLeft: 30 }}><h4>Back</h4></Button>
+        <Typography variant="h4" component="strong" style={{ whiteSpace: 'nowrap', marginLeft: '90px', color: 'white', fontFamily: 'Arial' }}>
+          Edit Profile
+        </Typography>
+        <img src='images/Logo.svg' alt="Logo" style={{ width: '250px', height: '150px' }} />
+      </Box>
+
+      <Box width="50%" height="60%" display="flex" bgcolor="white" boxShadow={2} borderRadius={8} padding={3} alignItems="center" marginTop={5}>
+        <Box display="flex" flexDirection="column" alignItems="center" width="100%">
+          <Box display="flex" alignItems="center">
+            <img src='images/jeno.png' alt="Pikshor" style={{ width: '175px', height: '150px', borderRadius: '25px' }} />
+            <Typography variant="h5" style={{ marginLeft: '20px', marginBottom: '15px' }}>
+              Jeno Roch Caballes
+            </Typography>
+          </Box>
+
+          <form onSubmit={handleSubmit} style={{ width: '100%', marginTop: '70px' }}>
+            <Box display="flex" flexDirection="row" flexWrap="wrap" justifyContent="space-between" width="100%" marginBottom={2}>
+              <TextField
+                label="First Name"
+                variant="outlined"
+                name="firstName"
+                value={userData.firstName}
+                onChange={handleChange}
+                style={{ marginBottom: '30px', width: '45%' }}
+              />
+              <TextField
+                label="Last Name"
+                variant="outlined"
+                name="lastName"
+                value={userData.lastName}
+                onChange={handleChange}
+                style={{ marginBottom: '30px', width: '45%',marginLeft: '-200px' }}
+              />
+              <TextField
+                label="Email"
+                variant="outlined"
+                type="email"
+                name="email"
+                value={userData.email}
+                onChange={handleChange}
+                style={{ marginBottom: '30px', width: '100%' }}
+              />
+              <TextField
+                label="Password"
+                variant="outlined"
+                type="password"
+                name="password"
+                value={userData.password}
+                onChange={handleChange}
+                style={{ marginBottom: '30px', width: '45%' }}
+              />
+              <TextField
+                label="Confirm Password"
+                variant="outlined"
+                type="password"
+                name="confirmPassword"
+                value={userData.confirmPassword}
+                onChange={handleChange}
+                style={{ marginBottom: '30px', width: '45%' }}
+              />
+              <Box textAlign="center" width="100%">
+                <Button variant="contained" size="large" type="submit" sx={{ bgcolor: '#333DAD', marginTop: 7 }}>
+                  Save Changes
+                </Button>
+              </Box>
             </Box>
+          </form>
         </Box>
       </Box>
-  
-      </div>
-    );
+    </Box>
+  );
 };
 
 export default EditProfileDeliver;
