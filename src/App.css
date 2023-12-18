@@ -19,3 +19,13 @@ body {
   height: 250vh;
   background: linear-gradient(#333DAD, #00CCE5);
 }
+
+.custom_textfield {
+  width: 30vw;
+  height: 20vh; 
+}
+
+.custom_textfield_1 {
+  width: 85vw;
+  height: 30vh; 
+}
