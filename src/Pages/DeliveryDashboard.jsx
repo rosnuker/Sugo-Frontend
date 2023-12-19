@@ -1,7 +1,7 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Box, Button, Drawer, IconButton, InputBase, Toolbar, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import './DeliveryDashboard.css'; // Import the CSS file for styling
+import './DeliveryDashboard.css';
 
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -53,7 +53,7 @@ const CourierApp = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Courier App
+            SUGO
           </Typography>
           <InputBase
             placeholder="Search..."
@@ -149,17 +149,19 @@ const CourierApp = () => {
         </div>
       </Drawer>
 
-      <div className="courier-app-container">
-        <div className="order-list-container">
+      <div className="courier-dashboard">
+        <div className="order-list">
           <h2>Order List</h2>
           <table className="order-table">
             <thead>
               <tr>
-                <th>ID</th>
+                <th>Order ID</th>
                 <th>Customer</th>
-                <th>Address</th>
+                <th>Amount</th>
+                <th>Payment Method</th>
+                <th>Message</th>
+                <th>Location</th>
                 <th>Status</th>
-                <th>Pick Up</th>
               </tr>
             </thead>
             <tbody>
