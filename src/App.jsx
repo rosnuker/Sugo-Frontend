@@ -16,6 +16,8 @@ import Register from "./Pages/Register"
 import RegisterSuccess from "./Pages/RegisterSuccess"
 import SpecificSugo from "./Pages/SpecificSugo"
 import SugoArrived from "./Pages/SugoArrived"
+import SugoProgress from "./Pages/SugoProgress"
+
 
 const router = createBrowserRouter([
   {
@@ -81,7 +83,11 @@ const router = createBrowserRouter([
   {
     path: 'editprofiledeliver',
     element: <EditProfileDeliver />,
-  }
+  },
+  {
+    path: 'sugoprogress',
+    element: <SugoProgress />,
+  },
 ])
 
 function App() {

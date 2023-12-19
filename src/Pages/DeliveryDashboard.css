@@ -2,11 +2,11 @@
 
 
 
-.courier-app-container {
+.courier-dashboard {
     text-align: center;
   }
   
-  .order-list-container {
+  .order-list {
     margin: 20px auto;
     width: 80%;
   }
