@@ -27,10 +27,37 @@ const OrdersList = () => {
     fetchOrders();
   }, []);
 
-  const handlePickOrder = (orderId) => {
-    // Implement logic to handle the order picking action
-    // You can send a request to the backend to update the order status or perform any necessary actions
-    console.log(`Order ${orderId} picked`);
+  const handlePickOrder = async (orderId) => {
+    try {
+      const emailResponse = await fetch('http://localhost:8080/getLoggedInUserEmail');
+      const email = await emailResponse.json();
+
+      const userResponse = await fetch(`http://localhost:8080/getUserByEmail?email=${email}`);
+      const user = await userResponse.json();
+
+      const courierIdResponse = await fetch(`http://localhost:8080/getCourierIdByEmail?email=${email}`);
+      const courierId = await courierIdResponse.json();
+
+      const response = await fetch('http://localhost:8080/addCourierToOrder', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          oid: orderId,
+          uid: user.uid,
+          cid: courierId,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to pick the order');
+      }
+
+      console.log(`Order ${orderId} picked successfully`);
+    } catch (error) {
+      console.error('Error picking the order:', error);
+    }
   };
 
   return (
@@ -44,19 +71,19 @@ const OrdersList = () => {
 
       {!loading && !error && (
         <div style={{ textAlign: 'center' }}>
-          <table style={{ borderCollapse: 'collapse', width: '80%', margin: 'auto', border: '1px solid black', backgroundColor: 'white' }}>
+          <table style={{ borderCollapse: 'collapse', width: '80%', margin: 'auto', backgroundColor: 'white', borderTopLeftRadius: '20px', borderTopRightRadius: '20px'}}>
             <thead>
-              <tr>
-                <th style={{ border: '1px solid black' }}>Order ID</th>
-                <th style={{ border: '1px solid black' }}>User</th>
-                <th style={{ border: '1px solid black' }}>Courier</th>
-                <th style={{ border: '1px solid black' }}>Amount To Pay</th>
-                <th style={{ border: '1px solid black' }}>Method</th>
-                <th style={{ border: '1px solid black' }}>Message</th>
-                <th style={{ border: '1px solid black' }}>Location</th>
-                <th style={{ border: '1px solid black' }}>Status</th>
-                <th style={{ border: '1px solid black' }}>Actions</th>
-              </tr>
+            <tr>
+      <th style={{  padding: '8px' }}>Order ID</th>
+      <th style={{  padding: '8px' }}>User</th>
+      <th style={{  padding: '8px' }}>Courier</th>
+      <th style={{  padding: '8px' }}>Amount To Pay</th>
+      <th style={{  padding: '8px' }}>Method</th>
+      <th style={{  padding: '8px' }}>Message</th>
+      <th style={{  padding: '8px' }}>Location</th>
+      <th style={{ padding: '8px' }}>Status</th>
+      <th style={{  padding: '8px' }}>Actions</th>
+    </tr>
             </thead>
             <tbody>
               {orders.map(order => (

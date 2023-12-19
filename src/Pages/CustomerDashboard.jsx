@@ -345,7 +345,9 @@ import ListItemText from '@mui/material/ListItemText';
                   <ListItemIcon>
                   <ExitToAppIcon />
                   </ListItemIcon>
+                  <NavLink to='/'>
                 <ListItemText primary="Logout" />
+                </NavLink>
                 </ListItem>
               {/* Add more items as needed */}
             </List>
