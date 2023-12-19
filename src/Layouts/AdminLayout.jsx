@@ -56,10 +56,12 @@ export default function AdminLayout() {
       <>
         <Grid container justify='center' alignItems='center' direction='column'>
           <Grid item>
-            <AppBar>
+            <AppBar position="absolute">
               <Toolbar sx={{ bgcolor: 'white' }}>
-              <Typography variant='overline' sx={{ marginLeft: 30, color: 'black' }}>Welcome, Admin!</Typography>
-                <Drawer sx={{ width: drawerWidth, flexShrink: 0, '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box'} }} variant="permanent" anchor="left">
+                <img src='/images/SugoLogo.png' alt='Sugo Logo' height='55px' style={{ marginRight: '10px', marginLeft: '100px' }}></img>
+                <img src='/images/SugoBanner.png' alt='Sugo Banner' height='55px'></img>
+                {/* <Typography variant='overline' sx={{ marginLeft: 20, color: 'black' }}>Welcome, Admin!</Typography> */}
+                {/* <Drawer sx={{ width: drawerWidth, flexShrink: 0, '& .MuiDrawer-paper': { width: drawerWidth, boxSizing: 'border-box'} }} variant="permanent" anchor="left">
                   <Toolbar> 
                     <img src='/images/SugoLogo.png' alt='Sugo Logo' height='55px' style={{marginLeft: '-10px'}}></img>
                     <img src='/images/SugoBanner.png' alt='Sugo Banner' height='55px'></img>
@@ -106,7 +108,7 @@ export default function AdminLayout() {
                       </List>
                     </Collapse>
                   </List>
-                </Drawer>
+                </Drawer> */}
                 <Tooltip title='Admin' arrow>
                   <IconButton onClick={handleClick} sx={{ marginLeft: 145 }}>
                     <Avatar {...stringAvatar('Admin Admin')}  />
