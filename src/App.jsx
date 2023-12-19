@@ -6,7 +6,9 @@ import AdminLayout from "./Layouts/AdminLayout"
 import About from "./Pages/About"
 import DashboardAdmin from "./Pages/Admin/Dashboard"
 import Contact from "./Pages/Contact"
+import CourierDashboard from "./Pages/CourierDashboard"
 import CustomerDashboard from "./Pages/CustomerDashboard"
+import CustomerDrawer from "./Pages/CustomerDrawer"
 import DeliveryDashboard from "./Pages/DeliveryDashboard"
 import EditProfileDeliver from "./Pages/EditProfileDeliver"
 import EditProfileUser from "./Pages/EditProfileUser"
@@ -88,6 +90,14 @@ const router = createBrowserRouter([
     path: 'sugoprogress',
     element: <SugoProgress />,
   },
+  {
+    path: 'courier',
+    element: <CourierDashboard />,
+  },
+  {
+    path: 'customerdrawer',
+    element: <CustomerDrawer />,
+  }
 ])
 
 function App() {
