@@ -1,8 +1,9 @@
 import { Group } from "@mui/icons-material";
-import { Box, Card, CardContent, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Grid, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import "./Dashboard.css";
 
 export default function DashboardAdmin() {
   const [users, setUsers] = useState([]);
@@ -61,7 +62,7 @@ export default function DashboardAdmin() {
 
   return <div className="gradientbg_2">
       <Grid container justify='center' alignItems='center' direction='column'>
-        <Box sx={{ bgcolor: '#e6e6e6', height: 785, width: 1600, marginLeft: 30, marginTop: 15, borderRadius: 7 }}>
+        <Box sx={{ bgcolor: '#e6e6e6', height: 825, width: 1800, marginLeft: -2, marginTop: 12, borderRadius: 7 }}>
           <Card sx={{ width: 215, height: 100, marginLeft: 3, marginTop: 5 }}>
              <CardContent>
                <Group sx={{ height: 75, width: 75}}/>
@@ -70,7 +71,7 @@ export default function DashboardAdmin() {
              </CardContent>
            </Card>
           <Typography variant='h5' sx={{ marginLeft: 3, marginTop: 4, textDecoration: 'underline' }}>Users</Typography>
-          <Paper sx={{ width: 600, height: 550, marginLeft: 3 }}>
+          <Paper sx={{ width: 672, height: 527, marginLeft: 3 }}>
             <DataGrid 
               rows={rows}
               columns={columns}
@@ -78,14 +79,16 @@ export default function DashboardAdmin() {
                 pagination: { 
                   paginationModel: { 
                     page: 0, 
-                    pageSize: 5 },
+                    pageSize: 8 },
                   },
                 }} 
-              pageSizeOptions={[5, 10]} 
               checkboxSelection
               onRowSelectionModelChange={(ids) => onRowsSelectionHandler(ids)}
             />
           </Paper>
+          <Button variant="contained" color="success" sx={{ marginTop: 2, marginLeft: 16 }}>Create User</Button>
+          <Button variant="contained" color="warning" sx={{ marginTop: 2, marginLeft: 3 }}>Update User</Button>
+          <Button variant="contained" color="error" sx={{ marginTop: 2, marginLeft: 3 }}>Delete User</Button>
         </Box>
       </Grid>
   </div>;
