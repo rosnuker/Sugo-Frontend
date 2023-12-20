@@ -123,7 +123,7 @@ export default function Login( {user, setUser} ) {
           <Grid item>
             <Paper elevation={4} sx={{ bgcolor: 'white', height: 700, width: 600, marginTop: 15, borderRadius: 5 }}>
               <Box>
-                <img src='./images/Logo.png' alt='Sugo Logo' style={{ marginLeft: '140px', marginTop: '60px' }} />
+                <NavLink to="/"><img src='./images/Logo.png' alt='Sugo Logo' style={{ marginLeft: '140px', marginTop: '60px' }} /></NavLink>
               </Box>
 
               <TextField name='email' label='Email' onChange={handleChange} size='normal' type='email' variant='standard' sx={{ width: 460, marginLeft: 8, marginTop: 4 }} />
