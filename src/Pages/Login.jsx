@@ -14,7 +14,15 @@ export default function Login( {user, setUser} ) {
   });
 
   useEffect(() => {
-    console.log("Loader: " + loader);
+    redirect();
+  }, [loader])
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setLoginData((prevData) => ({ ...prevData, [name]: value }));
+  };
+
+  function redirect() {
     if(user === null) {
       navigate('/login');
     } else if(user !== null) {
@@ -26,29 +34,87 @@ export default function Login( {user, setUser} ) {
         navigate('/admin')
       }
     }
-  }, [loader])
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setLoginData((prevData) => ({ ...prevData, [name]: value }));
+  }
+  
+  async function loginUser(user) {
+    return axios.post('http://localhost:8080/loginUser', {
+        email: loginData.email,
+        password: loginData.password
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        if (!(response.status === 200)) {
+          throw new Error('There is a problem with the request');
+        }
+        setUser(response.data);
+        setLoader(Math.random()*1000);
+      }).catch(error => {
+        console.log('There was a problem with the fetch operation:', error)
+      })
   };
 
-  const onSubmit = async (e) => {
-    await axios.post('http://localhost:8080/loginUser', {
-      email: loginData.email,
-      password: loginData.password
+  async function loginCourier() {
+    return axios.post('http://localhost:8080/loginCourier', {
+        email: loginData.email,
+        password: loginData.password
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        if (!(response.status === 200)) {
+          throw new Error('There is a problem with the request');
+        }
+        setUser(response.data);
+        setLoader(Math.random()*1000);
+      }).catch(error => {
+        console.log('There was a problem with the fetch operation:', error)
+      })
+  };
+
+  async function userExists() {
+    return axios.get('http://localhost:8080/userExists', {
+      params: {
+        email: loginData.email
+      }
     }, {
       headers: {
         'Content-Type': 'application/json'
       }
     }).then(response => {
-      if (!(response.status === 200)) {
+      if(!(response.status === 200)) {
         throw new Error('There is a problem with the request');
       }
-      setUser(response.data);
-      setLoader(Math.random()*1000);
+      loginUser();
     }).catch(error => {
-      console.log('There was a problem with the fetch operation:', error)
+      console.log('There was a problem with the fetch operation:', error);
     })
+  }
+
+  async function courierExists() {
+    return axios.get('http://localhost:8080/courierExists', {
+      params: {
+        email: loginData.email
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if(!(response.status === 200)) {
+        throw new Error('There is a problem with the request');
+      }
+      loginCourier();
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error);
+    })
+  }
+
+  const onSubmit = (e) => {
+    userExists();
+    courierExists();
   }
 
   return (

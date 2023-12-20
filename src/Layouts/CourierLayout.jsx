@@ -28,52 +28,53 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 // Import other icons as needed
 
 
-  const Search = styled('div')(({ theme }) => ({
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
+const Search = styled('div')(({ theme }) => ({
+position: 'relative',
+borderRadius: theme.shape.borderRadius,
+backgroundColor: alpha(theme.palette.common.white, 0.15),
+'&:hover': {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+},
+marginRight: theme.spacing(2),
+marginLeft: 0,
+width: '100%',
+[theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(3),
+    width: 'auto',
+},
+}));
+
+const SearchIconWrapper = styled('div')(({ theme }) => ({
+padding: theme.spacing(0, 2),
+height: '100%',
+position: 'absolute',
+pointerEvents: 'none',
+display: 'flex',
+alignItems: 'center',
+justifyContent: 'center',
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+color: 'inherit',
+'& .MuiInputBase-input': {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create('width'),
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
+    [theme.breakpoints.up('md')]: {
+    width: '20ch',
     },
-  }));
-
-  const SearchIconWrapper = styled('div')(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }));
-
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: 'inherit',
-    '& .MuiInputBase-input': {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create('width'),
-      width: '100%',
-      [theme.breakpoints.up('md')]: {
-        width: '20ch',
-      },
-    },
-  }));
+},
+}));
 
   
-  export default function CustomerDrawer( {user, setUser} ) {
+export default function CourierLayout( {user, setUser} ) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -81,132 +82,153 @@ import { useNavigate } from 'react-router-dom';
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const handleProfileMenuOpen = (event) => {
-      setAnchorEl(event.currentTarget);
+        setAnchorEl(event.currentTarget);
     };
 
     const handleMobileMenuClose = () => {
-      setMobileMoreAnchorEl(null);
+        setMobileMoreAnchorEl(null);
     };
 
     const handleMenuClose = () => {
-      setAnchorEl(null);
-      handleMobileMenuClose();
+        setAnchorEl(null);
+        handleMobileMenuClose();
     };
-    
+
 
     const handleMobileMenuOpen = (event) => {
-      setMobileMoreAnchorEl(event.currentTarget);
+        setMobileMoreAnchorEl(event.currentTarget);
     };
 
 
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
-      setIsDrawerOpen(true);
+        setIsDrawerOpen(true);
     };
 
     const handleDrawerClose = () => {
-      setIsDrawerOpen(false);
+        setIsDrawerOpen(false);
     };
 
     let navigate = useNavigate();
 
+    const [loader, setLoader] = useState(1);
+
     const logout = () => {
-      setUser(null);
-      setLoader(Math.random()*1000);
+        console.log(user);
+        setUser(null);
+        setLoader(Math.random()*1000);
+    }
+
+    useEffect(() => {
+      redirect();
+    }, [loader])
+    
+    function redirect() {
+      if(user === null) {
+        navigate('/login');
+      } else if(user !== null) {
+        if(user.role === 'user'){
+          navigate('/customer');
+        } else if(user.role === 'courier') {
+          navigate('/courier')
+        } else if(user.role === 'admin') {
+          navigate('/admin')
+        }
+      }
     }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
-      <Menu
+        <Menu
         anchorEl={anchorEl}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+            vertical: 'top',
+            horizontal: 'right',
         }}
         id={menuId}
         keepMounted
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+            vertical: 'top',
+            horizontal: 'right',
         }}
         open={isMenuOpen}
         onClose={handleMenuClose}
-      >
+        >
         <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem>
         <MenuItem onClick={handleMenuClose}>My account</MenuItem>
-      </Menu>
+        </Menu>
     );
 
     const mobileMenuId = 'primary-search-account-menu-mobile';
     const renderMobileMenu = (
-      <Menu
+        <Menu
         anchorEl={mobileMoreAnchorEl}
         anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+            vertical: 'top',
+            horizontal: 'right',
         }}
         id={mobileMenuId}
         keepMounted
         transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
+            vertical: 'top',
+            horizontal: 'right',
         }}
         open={isMobileMenuOpen}
         onClose={handleMobileMenuClose}
-      >
+        >
 
         <MenuItem onClick={handleProfileMenuOpen}>
-          <IconButton
+            <IconButton
             size="large"
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"
             aria-haspopup="true"
             onClick={handleProfileMenuOpen}
             color="inherit"
-          >
+            >
             <AccountCircle />
-          </IconButton>
-          <p>Profile</p>
+            </IconButton>
+            <p>Profile</p>
         </MenuItem>
-      </Menu>
+        </Menu>
     );
 
     return (
 
-      <div>
-      <Box sx={{ flexGrow: 1}}>
+        <div>
+        <Box sx={{ flexGrow: 1}}>
         <AppBar position="static">
-          <Toolbar>
+            <Toolbar>
             <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="open drawer"
-              sx={{ mr: 2 }}
-              onClick={handleDrawerOpen}
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="open drawer"
+                sx={{ mr: 2 }}
+                onClick={handleDrawerOpen}
             >
-              <MenuIcon />
+                <MenuIcon />
             </IconButton>
             <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: 'none', sm: 'block' } }}
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: 'none', sm: 'block' } }}
             ><h1>SUGO</h1>
             </Typography>
             <Search>
-              <SearchIconWrapper>
+                <SearchIconWrapper>
                 <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
+                </SearchIconWrapper>
+                <StyledInputBase
                 placeholder="Search…"
                 inputProps={{ 'aria-label': 'search' }}
-              />
+                />
             </Search>
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-              <IconButton
+                <IconButton
                 size="large"
                 edge="end"
                 aria-label="account of current user"
@@ -214,100 +236,100 @@ import { useNavigate } from 'react-router-dom';
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
                 color="inherit"
-              >
+                >
                 <AccountCircle />
-              </IconButton>
+                </IconButton>
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
+                <IconButton
                 size="large"
                 aria-label="show more"
                 aria-controls={mobileMenuId}
                 aria-haspopup="true"
                 onClick={handleMobileMenuOpen}
                 color="inherit"
-              >
+                >
                 <MoreIcon />
-              </IconButton>
+                </IconButton>
             </Box>
-          </Toolbar>
+            </Toolbar>
         </AppBar>
         {renderMobileMenu}
         {renderMenu}
 
         <Drawer
-          anchor="left"
-          open={isDrawerOpen}
-          onClose={handleDrawerClose}
-          sx={{
+            anchor="left"
+            open={isDrawerOpen}
+            onClose={handleDrawerClose}
+            sx={{
             width: '100', // Adjust the width as needed
-          }}
+            }}
         >
-          {/* Content of the drawer goes here */}
-          <div>
+            {/* Content of the drawer goes here */}
+            <div>
             <Box sx={{ bgcolor: '#00cce5', height: '300px', width: '400px'}}>
-              <img 
-                  src='images/Logo.png' 
-                  alt='' 
-                  style={{width: '200px', height: '250', marginLeft: 90, marginRight: 90, marginTop: 45}}
-                  ></img>
+                <img 
+                    src='images/Logo.png' 
+                    alt='' 
+                    style={{width: '200px', height: '250', marginLeft: 90, marginRight: 90, marginTop: 45}}
+                    ></img>
             </Box>
             
-              <List>
+                <List>
                 <ListItem button>
-                  <ListItemIcon>
+                    <ListItemIcon>
                     <InboxIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Inbox" />
+                    </ListItemIcon>
+                    <ListItemText primary="Inbox" />
                 </ListItem>
 
                 <ListItem button>
                     <ListItemIcon>
-                      <MailIcon />
+                        <MailIcon />
                     </ListItemIcon>
-                  <ListItemText primary="Email" />
+                    <ListItemText primary="Email" />
                 </ListItem>
 
                 <ListItem button>
-                  <ListItemIcon>
-                      <HomeIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Home" />
+                    <ListItemIcon>
+                        <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Home" />
                 </ListItem>
 
                 <ListItem button>
-                  <ListItemIcon>
+                    <ListItemIcon>
                     <DashboardIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Dashboard" />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
                 </ListItem>
 
                 <ListItem button>
-                  <ListItemIcon>
+                    <ListItemIcon>
                     <InboxIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Inbox" />
+                    </ListItemIcon>
+                    <ListItemText primary="Inbox" />
                 </ListItem>
 
                 <ListItem button>
-                  <ListItemIcon>
+                    <ListItemIcon>
                     <ShoppingCartIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Cart" />
+                    </ListItemIcon>
+                    <ListItemText primary="Cart" />
                 </ListItem>
 
                 <ListItem button>
-                  <ListItemIcon>
+                    <ListItemIcon>
                     <HistoryIcon />
                 </ListItemIcon>
                 <ListItemText primary="History" />
-              </ListItem>
+                </ListItem>
 
                 <ListItem button>
-                  <ListItemIcon>
-                  <NotificationsIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Notifications" />
+                    <ListItemIcon>
+                    <NotificationsIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Notifications" />
                 </ListItem>
 
                 <ListItem button>
@@ -318,18 +340,18 @@ import { useNavigate } from 'react-router-dom';
                 </ListItem>
 
                 <ListItem button>
-                  <ListItemIcon>
-                  <ExitToAppIcon />
-                  </ListItemIcon>
+                    <ListItemIcon>
+                    <ExitToAppIcon />
+                    </ListItemIcon>
                 <ListItemText primary="Logout" onClick={logout} />
                 </ListItem>
-              {/* Add more items as needed */}
+                {/* Add more items as needed */}
             </List>
-          </div>
+            </div>
         </Drawer>
-
-      </Box>
-
-      </div>
+        <Outlet />
+        </Box>
+        
+        </div>
     );
-  }
+}

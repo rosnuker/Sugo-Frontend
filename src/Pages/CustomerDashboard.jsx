@@ -29,8 +29,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 // Import other icons as needed
 
 
@@ -74,7 +73,7 @@ import { useEffect } from 'react';
     },
   }));
 
-  export default function PrimarySearchAppBar( {user, setUser} ) {
+  export default function CustomerDashboard( {user, setUser} ) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -114,13 +113,15 @@ import { useEffect } from 'react';
     const logout = () => {
       setUser(null);
       setLoader(Math.random()*1000);
-      navigate("/login");
     }
 
     const [loader, setLoader] = useState(1);
 
     useEffect(() => {
-      console.log("Loader: " + loader);
+      redirect();
+    }, [loader])
+    
+    function redirect() {
       if(user === null) {
         navigate('/login');
       } else if(user !== null) {
@@ -132,7 +133,7 @@ import { useEffect } from 'react';
           navigate('/admin')
         }
       }
-    }, [loader])
+    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
