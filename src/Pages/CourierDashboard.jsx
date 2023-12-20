@@ -1,10 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import CustomerDrawer from './CustomerDrawer';
+import { useNavigate } from 'react-router-dom';
 
-const OrdersList = () => {
+function OrdersList( {user, setUser} ) {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  let navigate = useNavigate();
+
+  const [loader, setLoader] = useState(1);
+
+  useEffect(() => {
+    console.log("Loader: " + loader);
+    console.log(user);
+    if(user === null) {
+      navigate('/login');
+    } else if(user !== null) {
+      if(user.role === 'user'){
+        navigate('/customer');
+      } else if(user.role === 'courier') {
+        navigate('/courier')
+      } else if(user.role === 'admin') {
+        navigate('/admin')
+      }
+    }
+  }, [loader])
 
   useEffect(() => {
     const fetchOrders = async () => {

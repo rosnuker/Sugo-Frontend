@@ -34,7 +34,7 @@ export default function SignUp() {
       if (!(response.status === 200)) {
         throw new Error('There is a problem with the request');
       }
-      navigate('/login');
+      navigate('/RegisterSuccess');
     }).catch(error => {
       console.log('There was a problem with the fetch operation:', error)
     })

@@ -1,58 +1,58 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login( {user, setUser} ) {
   let navigate = useNavigate();
 
+  const [loader, setLoader] = useState(1);
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
   });
 
+  useEffect(() => {
+    console.log("Loader: " + loader);
+    if(user === null) {
+      navigate('/login');
+    } else if(user !== null) {
+      if(user.role === 'user'){
+        navigate('/customer');
+      } else if(user.role === 'courier') {
+        navigate('/courier')
+      } else if(user.role === 'admin') {
+        navigate('/admin')
+      }
+    }
+  }, [loader])
   const handleChange = (event) => {
     const { name, value } = event.target;
     setLoginData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const onSubmit = async (e) => {
-    try {
-      const response = await axios.post('http://localhost:8080/loginUser', {
-        email: loginData.email,
-        password: loginData.password
-      }, {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-
-      if (response.status === 200 && response.data === 'Login Success!') {
-        navigate('/customer');
-      } else {
-        const courierResponse = await axios.post('http://localhost:8080/loginCourier', {
-          email: loginData.email,
-          password: loginData.password
-        }, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (courierResponse.status === 200 && courierResponse.data === 'Login Success!') {
-          navigate('/courier');
-        } else {
-          console.log('Login failed for both customer and courier');
-        }
+    await axios.post('http://localhost:8080/loginUser', {
+      email: loginData.email,
+      password: loginData.password
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
       }
-    } catch (error) {
-      console.log('There was a problem with the login request:', error);
-    }
-  };
+    }).then(response => {
+      if (!(response.status === 200)) {
+        throw new Error('There is a problem with the request');
+      }
+      setUser(response.data);
+      setLoader(Math.random()*1000);
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error)
+    })
+  }
 
   return (
-    <>
-      <div className='gradientbg_2'>
+    <div className='gradientbg_2'>
         <Grid container justify='center' alignItems='center' direction='column'>
           <Grid item>
             <Paper elevation={4} sx={{ bgcolor: 'white', height: 700, width: 600, marginTop: 15, borderRadius: 5 }}>
@@ -69,6 +69,5 @@ export default function Login() {
           </Grid>
         </Grid>
       </div>
-    </>
   );
 }

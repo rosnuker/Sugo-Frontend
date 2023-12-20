@@ -28,6 +28,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { useNavigate } from 'react-router-dom';
 // Import other icons as needed
 
 
@@ -72,7 +73,7 @@ import ListItemText from '@mui/material/ListItemText';
   }));
 
   
-  export default function PrimarySearchAppBar() {
+  export default function PrimarySearchAppBar( {user, setUser} ) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -108,8 +109,14 @@ import ListItemText from '@mui/material/ListItemText';
       setIsDrawerOpen(false);
     };
 
+    let navigate = useNavigate();
 
-
+    const logout = () => {
+      console.log(user);
+      setUser(null);
+      setLoader(Math.random()*1000);
+      navigate("/login");
+    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -316,7 +323,7 @@ import ListItemText from '@mui/material/ListItemText';
                   <ListItemIcon>
                   <ExitToAppIcon />
                   </ListItemIcon>
-                <ListItemText primary="Logout" />
+                <ListItemText primary="Logout" onClick={logout} />
                 </ListItem>
               {/* Add more items as needed */}
             </List>

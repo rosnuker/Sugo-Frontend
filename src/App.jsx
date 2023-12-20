@@ -19,9 +19,11 @@ import RegisterSuccess from "./Pages/RegisterSuccess"
 import SpecificSugo from "./Pages/SpecificSugo"
 import SugoArrived from "./Pages/SugoArrived"
 import SugoProgress from "./Pages/SugoProgress"
+import { useState } from "react"
 
-
-const router = createBrowserRouter([
+function App() { 
+  const [user, setUser] = useState([]);
+  const router = createBrowserRouter([
   {
     path:'/',
     element: <RootLayout />,
@@ -42,7 +44,7 @@ const router = createBrowserRouter([
   },
   {
       path: 'login',
-      element: <Login />,
+      element: <Login user={user} setUser={setUser} />,
   },
   {
     path: 'register',
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'customer',
-    element: <CustomerDashboard />,
+    element: <CustomerDashboard user={user} setUser={setUser} />,
   },
   {
     path:'admin',
@@ -92,15 +94,13 @@ const router = createBrowserRouter([
   },
   {
     path: 'courier',
-    element: <CourierDashboard />,
+    element: <CourierDashboard user={user} setUser={setUser} />,
   },
   {
     path: 'customerdrawer',
-    element: <CustomerDrawer />,
+    element: <CustomerDrawer user={user} setUser={setUser} />,
   }
 ])
-
-function App() {
   return (
     <RouterProvider router={router} />
   )
