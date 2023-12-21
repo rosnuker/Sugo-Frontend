@@ -36,7 +36,7 @@ export default function EditProfileCourier() {
 
         const updatedPassword = password || data.password;
 
-        const url = `http://localhost:8080/updateCourier/${cid}`;
+        const url = `http://localhost:8080/updateCourier`;
         const headers = {
           'Content-Type': 'application/json',
         };
