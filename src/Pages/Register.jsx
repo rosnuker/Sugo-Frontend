@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   let navigate = useNavigate();
@@ -34,7 +34,7 @@ export default function SignUp() {
       if (!(response.status === 200)) {
         throw new Error('There is a problem with the request');
       }
-      navigate('/RegisterSuccess');
+      navigate('/registersuccess');
     }).catch(error => {
       console.log('There was a problem with the fetch operation:', error)
     })
