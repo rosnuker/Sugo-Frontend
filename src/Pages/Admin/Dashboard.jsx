@@ -1,4 +1,4 @@
-import { Group } from "@mui/icons-material";
+import { AdminPanelSettings, DeliveryDining, Group } from "@mui/icons-material";
 import { Box, Button, Card, CardContent, Grid, Paper, Tab, Typography } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
@@ -154,21 +154,21 @@ export default function DashboardAdmin() {
         <Box sx={{ bgcolor: '#e6e6e6', height: 830, width: 1800, marginLeft: -1, marginTop: 12, borderRadius: 7 }}>
           <Card sx={{ width: 215, height: 100, marginLeft: 3, marginTop: 5 }}>
              <CardContent>
-               <Group sx={{ height: 75, width: 75}}/>
+               <Group sx={{ height: 75, width: 75}} />
                <Typography marginTop={-8} marginLeft={12}>Total Users</Typography>
                <Typography marginLeft={12}>{userCount}</Typography>
              </CardContent>
            </Card>
            <Card sx={{ width: 229, height: 100, marginLeft: 32, marginTop: -12.5 }}>
              <CardContent>
-               <Group sx={{ height: 75, width: 75}}/>
+               <DeliveryDining sx={{ height: 75, width: 75}} />
                <Typography marginTop={-8} marginLeft={12}>Total Couriers</Typography>
                <Typography marginLeft={12}>{courierCount}</Typography>
              </CardContent>
            </Card>
            <Card sx={{ width: 221, height: 100, marginLeft: 63, marginTop: -12.5 }}>
              <CardContent>
-               <Group sx={{ height: 75, width: 75}}/>
+               <AdminPanelSettings sx={{ height: 75, width: 75}} />
                <Typography marginTop={-8} marginLeft={12}>Total Admins</Typography>
                <Typography marginLeft={12}>{adminCount}</Typography>
              </CardContent>

@@ -1,7 +1,6 @@
-import { DeliveryDiningOutlined, ExpandLess, ExpandMore, PeopleOutlined } from "@mui/icons-material";
-import { AppBar, Avatar, Collapse, Drawer, Grid, IconButton, List, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
+import { AppBar, Avatar, Grid, IconButton, Menu, MenuItem, Toolbar, Tooltip, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 
 function stringToColor(string) {
   let hash = 0;
@@ -62,7 +61,7 @@ export default function AdminLayout( {user, setUser} ) {
   }
 
   useEffect(() => {
-    if(name === "Admin Admin") {
+    if(user !== null && name === "Admin Admin") {
       concatName();
     }
     redirect();
