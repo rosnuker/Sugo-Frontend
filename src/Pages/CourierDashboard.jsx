@@ -34,8 +34,7 @@ export default function CourierDashboard() {
 
   return (
     <div className='gradientbg_2'>
-
-      <h2 style={{ textAlign: 'center' }}>All Orders</h2>
+      <h2 style={{ textAlign: 'center', marginTop: '0px' }}>All Orders</h2>
 
        {loading && <p>Loading...</p>}
        {error && <p>Error: {error}</p>}

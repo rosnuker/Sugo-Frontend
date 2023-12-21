@@ -1,7 +1,6 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
 export default function Login( {user, setUser} ) {
