@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import CustomerDrawer from './CustomerDrawer';
+import CourierDrawer from './CourierDrawer';
 
-const OrdersList = () => {
+function OrdersList({ user, setUser }) {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,13 +27,29 @@ const OrdersList = () => {
     fetchOrders();
   }, []);
 
+  const fetchUserEmailByOrderId = async (orderId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/getUserEmailByOrderId?orderId=${orderId}`);
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch user email by order ID');
+      }
+
+      const { email } = await response.json();
+      return email;
+    } catch (error) {
+      console.error('Error fetching user email by order ID:', error);
+      return null;
+    }
+  };
+
   const handlePickOrder = async (orderId) => {
     try {
-      const emailResponse = await fetch('http://localhost:8080/getLoggedInUserEmail');
-      const email = await emailResponse.json();
+      const email = await fetchUserEmailByOrderId(orderId);
 
-      const userResponse = await fetch(`http://localhost:8080/getUserByEmail?email=${email}`);
-      const user = await userResponse.json();
+      if (!email) {
+        throw new Error('Failed to fetch user email for the order');
+      }
 
       const courierIdResponse = await fetch(`http://localhost:8080/getCourierIdByEmail?email=${email}`);
       const courierId = await courierIdResponse.json();
@@ -58,11 +74,11 @@ const OrdersList = () => {
     } catch (error) {
       console.error('Error picking the order:', error);
     }
-  };
+  }
 
   return (
     <div className='gradientbg_2'>
-      <CustomerDrawer />
+      <CourierDrawer />
 
       <h2 style={{ textAlign: 'center' }}>All Orders</h2>
 
@@ -71,22 +87,22 @@ const OrdersList = () => {
 
       {!loading && !error && (
         <div style={{ textAlign: 'center' }}>
-          <table style={{ borderCollapse: 'collapse', width: '80%', margin: 'auto', backgroundColor: 'white', borderTopLeftRadius: '20px', borderTopRightRadius: '20px'}}>
+          <table style={{ borderCollapse: 'collapse', width: '80%', margin: 'auto', backgroundColor: 'white', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}>
             <thead>
-            <tr>
-      <th style={{  padding: '8px' }}>Order ID</th>
-      <th style={{  padding: '8px' }}>User</th>
-      <th style={{  padding: '8px' }}>Courier</th>
-      <th style={{  padding: '8px' }}>Amount To Pay</th>
-      <th style={{  padding: '8px' }}>Method</th>
-      <th style={{  padding: '8px' }}>Message</th>
-      <th style={{  padding: '8px' }}>Location</th>
-      <th style={{ padding: '8px' }}>Status</th>
-      <th style={{  padding: '8px' }}>Actions</th>
-    </tr>
+              <tr>
+                <th style={{ padding: '8px' }}>Order ID</th>
+                <th style={{ padding: '8px' }}>User</th>
+                <th style={{ padding: '8px' }}>Courier</th>
+                <th style={{ padding: '8px' }}>Amount To Pay</th>
+                <th style={{ padding: '8px' }}>Method</th>
+                <th style={{ padding: '8px' }}>Message</th>
+                <th style={{ padding: '8px' }}>Location</th>
+                <th style={{ padding: '8px' }}>Status</th>
+                <th style={{ padding: '8px' }}>Actions</th>
+              </tr>
             </thead>
             <tbody>
-              {orders.map(order => (
+              {orders.map((order) => (
                 <tr key={order.oid}>
                   <td style={{ border: '1px solid black' }}>{order.oid}</td>
                   <td style={{ border: '1px solid black' }}>{order.user ? order.user.username : 'N/A'}</td>
@@ -107,6 +123,6 @@ const OrdersList = () => {
       )}
     </div>
   );
-};
+}
 
 export default OrdersList;

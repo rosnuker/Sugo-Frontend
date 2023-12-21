@@ -40,7 +40,7 @@ export default function Login() {
         });
 
         if (courierResponse.status === 200 && courierResponse.data === 'Login Success!') {
-          navigate('/courier');
+          navigate('/courier', { replace: true});
         } else {
           console.log('Login failed for both customer and courier');
         }

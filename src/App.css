@@ -29,8 +29,3 @@ body {
   width: 85vw;
   height: 30vh; 
 }
-
-/* Your global or component stylesheet */
-.order-id-header {
-  border-top-left-radius: 10px;
-}

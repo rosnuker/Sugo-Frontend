@@ -7,8 +7,8 @@ import About from "./Pages/About"
 import DashboardAdmin from "./Pages/Admin/Dashboard"
 import Contact from "./Pages/Contact"
 import CourierDashboard from "./Pages/CourierDashboard"
+import CourierDrawer from "./Pages/CourierDrawer"
 import CustomerDashboard from "./Pages/CustomerDashboard"
-import CustomerDrawer from "./Pages/CustomerDrawer"
 import DeliveryDashboard from "./Pages/DeliveryDashboard"
 import EditProfileDeliver from "./Pages/EditProfileDeliver"
 import EditProfileUser from "./Pages/EditProfileUser"
@@ -95,8 +95,8 @@ const router = createBrowserRouter([
     element: <CourierDashboard />,
   },
   {
-    path: 'customerdrawer',
-    element: <CustomerDrawer />,
+    path: 'courierdrawer',
+    element: <CourierDrawer />,
   }
 ])
 
