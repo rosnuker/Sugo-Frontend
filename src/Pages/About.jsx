@@ -42,7 +42,7 @@ export default function About() {
             {/* Profile 2 */}
             <Grid item xs={12} sm={4}>
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 10 }}>
-                <img src="/images/ampol.png" alt="Creator 2" style={{ maxWidth: '75%', maxHeight: '-50%', borderRadius: '10px' }} />
+                <img src="/images/aldrich.jpg" alt="Creator 2" style={{ maxWidth: '75%', maxHeight: '-50%', borderRadius: '10px' }} />
                 <Typography variant="h4" gutterBottom> 
                   Arisgar, Aldrich Alex
                 </Typography>
