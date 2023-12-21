@@ -59,7 +59,7 @@ function App() {
     },
     {
       path:'admin',
-      element: <AdminLayout />,
+      element: <AdminLayout user={user} setUser={setUser} />,
       children: [
         {
           index: true,
@@ -73,7 +73,7 @@ function App() {
       children: [
         {
           index: true,
-          element: <CourierDashboard user={user} setUser={setUser} />,
+          element: <CourierDashboard />,
         },
       ],
     },

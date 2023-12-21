@@ -74,6 +74,25 @@ export default function Login( {user, setUser} ) {
       })
   };
 
+  async function loginAdmin() {
+    return axios.post('http://localhost:8080/loginAdmin', {
+        email: loginData.email,
+        password: loginData.password
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        if (!(response.status === 200)) {
+          throw new Error('There is a problem with the request');
+        }
+        setUser(response.data);
+        setLoader(Math.random()*1000);
+      }).catch(error => {
+        console.log('There was a problem with the fetch operation:', error)
+      })
+  };
+
   async function userExists() {
     return axios.get('http://localhost:8080/userExists', {
       params: {
@@ -112,9 +131,29 @@ export default function Login( {user, setUser} ) {
     })
   }
 
+  async function adminExists() {
+    return axios.get('http://localhost:8080/adminExists', {
+      params: {
+        email: loginData.email
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if(!(response.status === 200)) {
+        throw new Error('There is a problem with the request');
+      }
+      loginAdmin();
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error);
+    })
+  }
+
   const onSubmit = (e) => {
     userExists();
     courierExists();
+    adminExists();
   }
 
   return (

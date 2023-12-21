@@ -115,7 +115,6 @@ export default function CourierLayout( {user, setUser} ) {
     const [loader, setLoader] = useState(1);
 
     const logout = () => {
-        console.log(user);
         setUser(null);
         setLoader(Math.random()*1000);
     }
