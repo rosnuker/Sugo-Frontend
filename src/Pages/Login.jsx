@@ -1,63 +1,168 @@
 import { Box, Button, Grid, Paper, TextField, Typography } from "@mui/material";
 import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login( {user, setUser} ) {
   let navigate = useNavigate();
 
+  const [loader, setLoader] = useState(1);
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
   });
+
+  useEffect(() => {
+    redirect();
+  }, [loader])
 
   const handleChange = (event) => {
     const { name, value } = event.target;
     setLoginData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const onSubmit = async (e) => {
-    try {
-      const response = await axios.post('http://localhost:8080/loginUser', {
+  function redirect() {
+    if(user === null) {
+      navigate('/login');
+    } else if(user !== null) {
+      if(user.role === 'user'){
+        navigate('/customer');
+      } else if(user.role === 'courier') {
+        navigate('/courier')
+      } else if(user.role === 'admin') {
+        navigate('/admin')
+      }
+    }
+  }
+  
+  async function loginUser(user) {
+    return axios.post('http://localhost:8080/loginUser', {
         email: loginData.email,
         password: loginData.password
       }, {
         headers: {
           'Content-Type': 'application/json'
         }
-      });
-
-      if (response.status === 200 && response.data === 'Login Success!') {
-        navigate('/customer');
-      } else {
-        const courierResponse = await axios.post('http://localhost:8080/loginCourier', {
-          email: loginData.email,
-          password: loginData.password
-        }, {
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-
-        if (courierResponse.status === 200 && courierResponse.data === 'Login Success!') {
-          navigate('/courier', { replace: true});
-        } else {
-          console.log('Login failed for both customer and courier');
+      }).then(response => {
+        if (!(response.status === 200)) {
+          throw new Error('There is a problem with the request');
         }
-      }
-    } catch (error) {
-      console.log('There was a problem with the login request:', error);
-    }
+        setUser(response.data);
+        setLoader(Math.random()*1000);
+      }).catch(error => {
+        console.log('There was a problem with the fetch operation:', error)
+      })
   };
 
+  async function loginCourier() {
+    return axios.post('http://localhost:8080/loginCourier', {
+        email: loginData.email,
+        password: loginData.password
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        if (!(response.status === 200)) {
+          throw new Error('There is a problem with the request');
+        }
+        setUser(response.data);
+        setLoader(Math.random()*1000);
+      }).catch(error => {
+        console.log('There was a problem with the fetch operation:', error)
+      })
+  };
+
+  async function loginAdmin() {
+    return axios.post('http://localhost:8080/loginAdmin', {
+        email: loginData.email,
+        password: loginData.password
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(response => {
+        if (!(response.status === 200)) {
+          throw new Error('There is a problem with the request');
+        }
+        setUser(response.data);
+        setLoader(Math.random()*1000);
+      }).catch(error => {
+        console.log('There was a problem with the fetch operation:', error)
+      })
+  };
+
+  async function userExists() {
+    return axios.get('http://localhost:8080/userExists', {
+      params: {
+        email: loginData.email
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if(!(response.status === 200)) {
+        throw new Error('There is a problem with the request');
+      }
+      loginUser();
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error);
+    })
+  }
+
+  async function courierExists() {
+    return axios.get('http://localhost:8080/courierExists', {
+      params: {
+        email: loginData.email
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if(!(response.status === 200)) {
+        throw new Error('There is a problem with the request');
+      }
+      loginCourier();
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error);
+    })
+  }
+
+  async function adminExists() {
+    return axios.get('http://localhost:8080/adminExists', {
+      params: {
+        email: loginData.email
+      }
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      if(!(response.status === 200)) {
+        throw new Error('There is a problem with the request');
+      }
+      loginAdmin();
+    }).catch(error => {
+      console.log('There was a problem with the fetch operation:', error);
+    })
+  }
+
+  const onSubmit = (e) => {
+    userExists();
+    courierExists();
+    adminExists();
+  }
+
   return (
-    <>
-      <div className='gradientbg_2'>
+    <div className='gradientbg_2'>
         <Grid container justify='center' alignItems='center' direction='column'>
           <Grid item>
             <Paper elevation={4} sx={{ bgcolor: 'white', height: 700, width: 600, marginTop: 15, borderRadius: 5 }}>
               <Box>
-                <img src='./images/Logo.png' alt='Sugo Logo' style={{ marginLeft: '140px', marginTop: '60px' }} />
+                <NavLink to="/"><img src='./images/Logo.png' alt='Sugo Logo' style={{ marginLeft: '140px', marginTop: '60px' }} /></NavLink>
               </Box>
 
               <TextField name='email' label='Email' onChange={handleChange} size='normal' type='email' variant='standard' sx={{ width: 460, marginLeft: 8, marginTop: 4 }} />
@@ -69,6 +174,5 @@ export default function Login() {
           </Grid>
         </Grid>
       </div>
-    </>
   );
 }

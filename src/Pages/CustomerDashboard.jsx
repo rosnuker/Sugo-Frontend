@@ -15,7 +15,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { alpha, styled } from '@mui/material/styles';
 import * as React from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -29,6 +29,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { useState, useEffect } from 'react';
 // Import other icons as needed
 
 
@@ -72,8 +73,7 @@ import ListItemText from '@mui/material/ListItemText';
     },
   }));
 
-  
-  export default function PrimarySearchAppBar() {
+  export default function CustomerDashboard( {user, setUser} ) {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -98,7 +98,6 @@ import ListItemText from '@mui/material/ListItemText';
       setMobileMoreAnchorEl(event.currentTarget);
     };
 
-
     const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
     const handleDrawerOpen = () => {
@@ -109,8 +108,32 @@ import ListItemText from '@mui/material/ListItemText';
       setIsDrawerOpen(false);
     };
 
+    let navigate = useNavigate();
 
+    const logout = () => {
+      setUser(null);
+      setLoader(Math.random()*1000);
+    }
 
+    const [loader, setLoader] = useState(1);
+
+    useEffect(() => {
+      redirect();
+    }, [loader])
+    
+    function redirect() {
+      if(user === null) {
+        navigate('/login');
+      } else if(user !== null) {
+        if(user.role === 'user'){
+          navigate('/customer');
+        } else if(user.role === 'courier') {
+          navigate('/courier')
+        } else if(user.role === 'admin') {
+          navigate('/admin')
+        }
+      }
+    }
 
     const menuId = 'primary-search-account-menu';
     const renderMenu = (
@@ -345,9 +368,7 @@ import ListItemText from '@mui/material/ListItemText';
                   <ListItemIcon>
                   <ExitToAppIcon />
                   </ListItemIcon>
-                  <NavLink to='/'>
-                <ListItemText primary="Logout" />
-                </NavLink>
+                <ListItemText primary="Logout" onClick={logout} />
                 </ListItem>
               {/* Add more items as needed */}
             </List>

@@ -58,11 +58,13 @@ export default function SignUp() {
               }}
             >
               <Box>
-                <img
-                  src="./images/Logo.png"
-                  alt="Sugo Logo"
-                  style={{ marginLeft: "180px", marginTop: "60px", height: "200px", width: "200px" }}
-                />
+                <NavLink to="/">
+                  <img
+                    src="./images/Logo.png"
+                    alt="Sugo Logo"
+                    style={{ marginLeft: "180px", marginTop: "60px", height: "200px", width: "200px" }}
+                  />
+                </NavLink>
               </Box>
 
               <TextField

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import CourierDrawer from './CourierDrawer';
 
-function OrdersList({ user, setUser }) {
+export default function CourierDashboard() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -27,102 +26,56 @@ function OrdersList({ user, setUser }) {
     fetchOrders();
   }, []);
 
-  const fetchUserEmailByOrderId = async (orderId) => {
-    try {
-      const response = await fetch(`http://localhost:8080/getUserEmailByOrderId?orderId=${orderId}`);
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch user email by order ID');
-      }
-
-      const { email } = await response.json();
-      return email;
-    } catch (error) {
-      console.error('Error fetching user email by order ID:', error);
-      return null;
-    }
+  const handlePickOrder = (orderId) => {
+    // Implement logic to handle the order picking action
+    // You can send a request to the backend to update the order status or perform any necessary actions
+    console.log(`Order ${orderId} picked`);
   };
-
-  const handlePickOrder = async (orderId) => {
-    try {
-      const email = await fetchUserEmailByOrderId(orderId);
-
-      if (!email) {
-        throw new Error('Failed to fetch user email for the order');
-      }
-
-      const courierIdResponse = await fetch(`http://localhost:8080/getCourierIdByEmail?email=${email}`);
-      const courierId = await courierIdResponse.json();
-
-      const response = await fetch('http://localhost:8080/addCourierToOrder', {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          oid: orderId,
-          uid: user.uid,
-          cid: courierId,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to pick the order');
-      }
-
-      console.log(`Order ${orderId} picked successfully`);
-    } catch (error) {
-      console.error('Error picking the order:', error);
-    }
-  }
 
   return (
     <div className='gradientbg_2'>
-      <CourierDrawer />
 
       <h2 style={{ textAlign: 'center' }}>All Orders</h2>
 
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
+       {loading && <p>Loading...</p>}
+       {error && <p>Error: {error}</p>}
 
-      {!loading && !error && (
-        <div style={{ textAlign: 'center' }}>
-          <table style={{ borderCollapse: 'collapse', width: '80%', margin: 'auto', backgroundColor: 'white', borderTopLeftRadius: '20px', borderTopRightRadius: '20px' }}>
-            <thead>
-              <tr>
-                <th style={{ padding: '8px' }}>Order ID</th>
-                <th style={{ padding: '8px' }}>User</th>
-                <th style={{ padding: '8px' }}>Courier</th>
-                <th style={{ padding: '8px' }}>Amount To Pay</th>
-                <th style={{ padding: '8px' }}>Method</th>
-                <th style={{ padding: '8px' }}>Message</th>
-                <th style={{ padding: '8px' }}>Location</th>
-                <th style={{ padding: '8px' }}>Status</th>
-                <th style={{ padding: '8px' }}>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.map((order) => (
-                <tr key={order.oid}>
-                  <td style={{ border: '1px solid black' }}>{order.oid}</td>
-                  <td style={{ border: '1px solid black' }}>{order.user ? order.user.username : 'N/A'}</td>
-                  <td style={{ border: '1px solid black' }}>{order.courier ? order.courier.name : 'N/A'}</td>
-                  <td style={{ border: '1px solid black' }}>{order.amountToPay}</td>
-                  <td style={{ border: '1px solid black' }}>{order.method}</td>
-                  <td style={{ border: '1px solid black' }}>{order.message}</td>
-                  <td style={{ border: '1px solid black' }}>{order.location}</td>
-                  <td style={{ border: '1px solid black' }}>{order.status}</td>
-                  <td style={{ border: '1px solid black' }}>
-                    <button onClick={() => handlePickOrder(order.oid)}>Pick Order</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-    </div>
+       {!loading && !error && (
+         <div style={{ textAlign: 'center' }}>
+           <table style={{ borderCollapse: 'collapse', width: '80%', margin: 'auto', border: '1px solid black', backgroundColor: 'white' }}>
+             <thead>
+               <tr>
+                 <th style={{ border: '1px solid black' }}>Order ID</th>
+                 <th style={{ border: '1px solid black' }}>User</th>
+                 <th style={{ border: '1px solid black' }}>Courier</th>
+                 <th style={{ border: '1px solid black' }}>Amount To Pay</th>
+                 <th style={{ border: '1px solid black' }}>Method</th>
+                 <th style={{ border: '1px solid black' }}>Message</th>
+                 <th style={{ border: '1px solid black' }}>Location</th>
+                 <th style={{ border: '1px solid black' }}>Status</th>
+                 <th style={{ border: '1px solid black' }}>Actions</th>
+               </tr>
+             </thead>
+             <tbody>
+               {orders.map(order => (
+                 <tr key={order.oid}>
+                   <td style={{ border: '1px solid black' }}>{order.oid}</td>
+                   <td style={{ border: '1px solid black' }}>{order.user ? order.user.lname : 'N/A'}</td>
+                   <td style={{ border: '1px solid black' }}>{order.courier ? order.courier.lname : 'N/A'}</td>
+                   <td style={{ border: '1px solid black' }}>{order.amountToPay}</td>
+                   <td style={{ border: '1px solid black' }}>{order.method}</td>
+                   <td style={{ border: '1px solid black' }}>{order.message}</td>
+                   <td style={{ border: '1px solid black' }}>{order.location}</td>
+                   <td style={{ border: '1px solid black' }}>{order.status}</td>
+                   <td style={{ border: '1px solid black' }}>
+                     <button onClick={() => handlePickOrder(order.oid)}>Pick Order</button>
+                   </td>
+                 </tr>
+               ))}
+             </tbody>
+           </table>
+         </div>
+       )}
+     </div>
   );
 }
-
-export default OrdersList;
