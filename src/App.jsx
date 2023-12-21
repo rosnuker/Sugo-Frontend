@@ -1,16 +1,16 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom"
 import "./App.css"
 
-import RootLayout from "./Layouts/RootLayout"
 import AdminLayout from "./Layouts/AdminLayout"
 import CourierLayout from "./Layouts/CourierLayout"
+import RootLayout from "./Layouts/RootLayout"
 
 import About from "./Pages/About"
 import DashboardAdmin from "./Pages/Admin/Dashboard"
 import Contact from "./Pages/Contact"
 import CourierDashboard from "./Pages/CourierDashboard"
+import CourierDrawer from "./Pages/CourierDrawer"
 import CustomerDashboard from "./Pages/CustomerDashboard"
-import CustomerDrawer from "./Pages/CustomerDrawer"
 import DeliveryDashboard from "./Pages/DeliveryDashboard"
 import EditProfileDeliver from "./Pages/EditProfileDeliver"
 import EditProfileUser from "./Pages/EditProfileUser"
@@ -110,8 +110,8 @@ function App() {
       element: <CourierDashboard />,
     },
     {
-      path: 'customerdrawer',
-      element: <CustomerDrawer />,
+      path: 'courierdrawer',
+      element: <CourierDrawer />,
     }
   ]);
 
